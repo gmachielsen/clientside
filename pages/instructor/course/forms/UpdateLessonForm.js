@@ -1,6 +1,6 @@
 import { Button, Progress, Switch } from "antd";
 import { CloseCircleFilled, CloseCircleOutlined } from "@ant-design/icons";
-import ReactPlayer from 'react-player';
+import ReactPlayer from "react-player";
 
 const UpdateLessonForm = ({
   current,
@@ -43,9 +43,10 @@ const UpdateLessonForm = ({
               />
             </div>
           )}
-            <label className="btn btn-dark btn-block text-left mt-3">
-              {uploadVideoButtonText}
-              <input onChange={handleVideo} type="file" accept="video/*" hidden />
+
+          <label className="btn btn-dark btn-block text-left mt-3">
+            {uploadVideoButtonText}
+            <input onChange={handleVideo} type="file" accept="video/*" hidden />
           </label>
         </div>
 
@@ -56,15 +57,15 @@ const UpdateLessonForm = ({
             steps={10}
           />
         )}
+
         <div className="d-flex justify-content-between">
-          <span className="pt-3 badge"><p>Preview</p></span>
-          <p>Preview</p>
-          <Switch 
-            className="float-right mt-2" 
-            disabled={uploading} 
+          <span className="pt-3 badge">Preview</span>
+          <Switch
+            className="float-right mt-2"
+            disabled={uploading}
             checked={current.free_preview}
             name="fee_preview"
-            onChange={(v) => setCurrent({ ...current, free_preview: v })} 
+            onChange={(v) => setCurrent({ ...current, free_preview: v })}
           />
         </div>
 
