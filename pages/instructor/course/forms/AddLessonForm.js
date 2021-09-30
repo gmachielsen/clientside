@@ -5,8 +5,6 @@ import {CloseCircleFilled} from "@ant-design/icons";
 const AddLessonForm = ({ values, setValues, handleAddLesson, uploading, uploadButtonText, handleVideo, progress, handleVideoRemove }) => {
     
     
-const title;
-const content;
     return (
         <div className="container pt-3">
             <form onSubmit={handleAddLesson}> 
