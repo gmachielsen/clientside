@@ -15,14 +15,14 @@ const UpdateLessonForm = ({
     <div className="container pt-3">
       {/* {JSON.stringify(current)} */}
       <form onSubmit={handleUpdateLesson}>
-        <input
+        {/* <input
           type="text"
           className="form-control square"
           onChange={(e) => setCurrent({ ...current, title: e.target.value })}
           value={current.title}
           autoFocus
           required
-        />
+        /> */}
 
         <textarea
           className="form-control mt-3"
