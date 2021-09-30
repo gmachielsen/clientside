@@ -24,13 +24,13 @@ const UpdateLessonForm = ({
           required
         /> */}
 
-        <textarea
+        {/* <textarea
           className="form-control mt-3"
           cols="7"
           rows="7"
           onChange={(e) => setCurrent({ ...current, content: e.target.value })}
           value={current.content}
-        ></textarea>
+        ></textarea> */}
 
         <div>
           {!uploading && current.video && current.video.Location && (
