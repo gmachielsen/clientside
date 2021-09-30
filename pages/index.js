@@ -1,8 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { BackTop, Button } from 'antd';
 import axios from "axios";
 import CourseCard from '../components/cards/CourseCard';
 import Footer from "../components/Footer";
+import Cover from '../components/cards/Cover';
 
 const Index = ({ courses }) => {
   // const [courses, setCourses] = useState([]);
@@ -19,10 +21,18 @@ const Index = ({ courses }) => {
 
     return (
       <>
-      <div>
-        <h1 className="jumbotron text-center bg-primary square">
-          Online Education Marketplace
-        </h1>
+      <div style={{position: 'absolute', width: '100%'}}>
+      <div className="cover" style={{ padding: 0, position: 'relative', textAlign: 'center'}}>
+          <h1 className="text-center" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '25%', fontSize: '100px', color: 'blanchedalmond', zIndex: 2, fontFamily: 'serif' }}>
+            Art Masters Academy
+            {/* <img src={require('../../public/coverphoto.jpg')} /> */}
+
+          </h1>
+          <p style={{ zIndex: 2, fontSize: '35px', color: 'aliceblue', textAlign: 'center', position: 'absolute', left: 0, right: 0, top: '60%', fontFamily: 'serif', fontWeight: 'bold'}}>mastering art is an art</p>
+
+          <Cover style={{ zIndex: 1 }} />
+        </div>
+        <br/><br/>
         <div className="container-fluid">
             <div className="row">
                 {courses.map((course) => (
