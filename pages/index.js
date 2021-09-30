@@ -36,11 +36,19 @@ const Index = ({ courses }) => {
         <div className="container-fluid">
             <div className="row">
                 {courses.map((course) => (
-                  <div key={course._id} className="col-md-4">
-                    <CourseCard course={course} />
+                  <div key={course._id} className="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                    <CourseCard course={course}/>
                   </div>))}
             </div>
         </div>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-12 text-center">
+              <Button style={{ fontFamily: 'serif', fontSize: '20px'}} href="/courses">Explore courses</Button>
+            </div>
+          </div>
+        </div>
+                  <br/><br/><br/>
           <Footer />
         </div>
       </>
