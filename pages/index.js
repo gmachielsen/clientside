@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import CourseCard from '../components/cards/CourseCard';
+import Footer from "../components/Footer";
 
 const Index = ({ courses }) => {
   // const [courses, setCourses] = useState([]);
@@ -18,6 +19,7 @@ const Index = ({ courses }) => {
 
     return (
       <>
+      <div>
         <h1 className="jumbotron text-center bg-primary square">
           Online Education Marketplace
         </h1>
@@ -28,6 +30,8 @@ const Index = ({ courses }) => {
                     <CourseCard course={course} />
                   </div>))}
             </div>
+        </div>
+          <Footer />
         </div>
       </>
     );
