@@ -9,7 +9,7 @@ import AddLessonForm from '../forms/AddLessonForm';
 import { toast } from "react-toastify";
 import Item from "antd/lib/list/Item";
 
-import { Button, Progress, Tooltip, Badge, Avatar, Empty } from "antd";
+import { Progress, Tooltip, Avatar } from "antd";
 import {CloseCircleFilled} from "@ant-design/icons";
 
 const CourseView = () => {
