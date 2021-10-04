@@ -2,15 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import InstructorRoute from "../../../../components/routes/InstructorRoute";
 import axios from "axios";
-import { Avatar, Tooltip, Button, Modal, List} from "antd";
-import { EditOutlined, CheckOutlined, UploadOutlined, QuestionOutlined, CloseOutlined, UserSwitchOutlined } from "@ant-design/icons";
+import { Avatar, Tooltip, Button, Modal, List, Progress} from "antd";
+import { EditOutlined, CheckOutlined, UploadOutlined, QuestionOutlined, CloseOutlined, UserSwitchOutlined, CloseCircleFilled } from "@ant-design/icons";
 import ReactMarkdown from "react-markdown";
 import AddLessonForm from '../forms/AddLessonForm';
 import { toast } from "react-toastify";
 import Item from "antd/lib/list/Item";
 
-import { Progress, Tooltip, Avatar } from "antd";
-import {CloseCircleFilled} from "@ant-design/icons";
 
 const CourseView = () => {
   const [course, setCourse] = useState({});
