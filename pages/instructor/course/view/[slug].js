@@ -9,6 +9,9 @@ import AddLessonForm from '../forms/AddLessonForm';
 import { toast } from "react-toastify";
 import Item from "antd/lib/list/Item";
 
+import { Button, Progress, Tooltip, Badge, Avatar, Empty } from "antd";
+import {CloseCircleFilled} from "@ant-design/icons";
+
 const CourseView = () => {
   const [course, setCourse] = useState({});
   // for lessons
@@ -83,11 +86,11 @@ const CourseView = () => {
       const { data } = await axios.post(
         `/api/course/video-upload/${course.instructor._id}`,
         videoData,
-        // {
-        //   onUploadProgress: (e) => {
-        //     setProgress(Math.round((100 * e.loaded) / e.total));
-        //   },
-        // }
+        {
+          onUploadProgress: (e) => {
+            setProgress(Math.round((100 * e.loaded) / e.total));
+          },
+        }
       );
       // once response is received
       console.log(data);
