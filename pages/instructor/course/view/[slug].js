@@ -83,11 +83,11 @@ const CourseView = () => {
       const { data } = await axios.post(
         `/api/course/video-upload/${course.instructor._id}`,
         videoData,
-        {
-          onUploadProgress: (e) => {
-            setProgress(Math.round((100 * e.loaded) / e.total));
-          },
-        }
+        // {
+        //   onUploadProgress: (e) => {
+        //     setProgress(Math.round((100 * e.loaded) / e.total));
+        //   },
+        // }
       );
       // once response is received
       console.log(data);
