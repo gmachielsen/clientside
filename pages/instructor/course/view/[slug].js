@@ -18,11 +18,13 @@ const CourseView = () => {
     title: "",
     content: "",
     video: {},
+    lessonimage: {},
   });
   const [uploading, setUploading] = useState(false);
   const [uploadButtonText, setUploadButtonText] = useState("Upload Video");
   const [progress, setProgress] = useState(0);
-  
+  const [imageLessonPreview, setImageLessonPreview] = useState("");
+
   // student count
   const [students, setStudents] = useState(0);
 
@@ -119,6 +121,47 @@ const CourseView = () => {
     }
   };
 
+  const handleLessonImage = (e) => {
+    let file = e.target.files[0];
+    setImageLessonPreview(window.URL.createObjectURL(file));
+    setuploadImageButtonText(file.name);
+    setValues({ ...values, loading: true });
+    // resize
+    Resizer.imageFileResizer(file, 720, 500, "JPEG", 100, 0, async (uri) => {
+      try {
+        let { data } = await axios.post("/api/course/upload-lessonpicture", {
+          lessonimage: uri,
+        });
+        console.log("Image Lesson Uploaded", data);
+        // set lesson image in te state 
+        // setLessonImage(data);
+        setValues({ ...values, lessonimage: data });
+        // lessonpicture: data 
+      } catch (err) {
+        console.log(err);
+        setValues({ ...values, loading: false });
+        toast("LessonImage upload failed, Try later.");
+      }
+    });
+  };
+
+
+  const handleLessonImageRemove = async () => {
+    try {
+      const res = await axios.post("/api/course/lessonremove-image",  values.lessonimage);
+      console.log(res, "lessonimage data");
+      setuploadImageButtonText("Upload Image");
+      setImageLessonPreview({});
+      setValues({ ...values, lessonimage: {} });
+    } catch (err) {
+      console.log(err);
+      setValues({ ...values, loading: false });
+      toast("Lesson Image removed failed. Try later.");
+    }
+  }
+
+
+
   const handlePublish = async () => {
     // console.log(course.instructor._id);
     // return;
@@ -196,6 +239,18 @@ const CourseView = () => {
                 steps={10}
             />
         )}
+
+                <div className="d-flex justify-content-center">
+                    <label className="btn btn-dark btn-block text-left mt-3">
+                        {uploadImageButtonText}
+                        <input type="file" name="lessonimage" onChange={handleLessonImage} accept="image/*" hidden/>
+                    </label>
+                    {imageLessonPreview && (
+                        <Badge count="X" onClick={handleLessonImageRemove} className="pointer">
+                            <Avatar width={200} src={imageLessonPreview} />
+                        </Badge>
+                    )}
+                </div>
 
         <Button onClick={handleAddLesson} className="col mt-3" size="large" type="primary" loading={uploading} shape="round">Save</Button>
     </form>

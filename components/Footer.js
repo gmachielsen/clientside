@@ -14,8 +14,8 @@ const Footer = () => {
                             <div className="col-sm-12">
                                 <div className="content text-center" style={{ color: 'white', backgroundColor: 'black'}}>
                                     <br/>
-                                    <h2 style={{ color: 'white' }}>Blijf op de hoogte</h2>
-                                    <p>Schrijf je in voor onze nieuwsbrief en volg ons op social media</p>
+                                    <h2 style={{ color: 'white' }}>Keep in touch</h2>
+                                    <p>Subscribe for our newsletter and keep in touch on social media</p>
                                     {/* <fab icon={['fab', 'google']} /> */}
                                     <div className="subscribe input-group mb-3" style={{ justifyContent: 'center'}}>
                                         {/* style={{ justify-content: 'center' }} */}
