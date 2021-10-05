@@ -24,6 +24,7 @@ const CourseView = () => {
   const [uploadButtonText, setUploadButtonText] = useState("Upload Video");
   const [progress, setProgress] = useState(0);
   const [imageLessonPreview, setImageLessonPreview] = useState("");
+  const [uploadImageButtonText, setuploadImageButtonText] = useState("Upload Image");
 
   // student count
   const [students, setStudents] = useState(0);
