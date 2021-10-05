@@ -147,6 +147,7 @@ const CourseEdit = () => {
     // console.log("removed", removed[0]._id);
     setValues({ ...values, lessons: allLessons });
     // send request to server
+    console.log(removed[0]._id, "removed", slug, "slug");
     const { data } = await axios.put(`/api/course/${slug}/${removed[0]._id}`);
     console.log("LESSON DELETED =>", data);
   };

@@ -11,18 +11,19 @@ const CourseCard = ({ course }) => {
     return (
         <Link href={`/course/${slug}`}>
             <a>
-                <Card
+            <Card
                     className="mb-4"
+                    style={{ fontFamily: 'serif'}}
                     cover={
                         <img
-                        src={image.Location}
+                        src={image ? image.Location: image}
                         alt={name}
-                        style={{ height: "200px", objectFit: "cover" }}
+                        style={{ height: "500px", objectFit: "cover" }}
                         className="p-1"
                         />
                     }
                 >                    
-                    <h2 className="font-weight-bold">{name}</h2>
+                    <h2 style={{ fontWeight: 'normal'}}>{name}</h2>
                     <p>by {instructor.name}</p>
                     <Badge 
                         count={category}
