@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import InstructorRoute from "../../../../components/routes/InstructorRoute";
 import axios from "axios";
-import { Avatar, Tooltip, Button, Modal, List, Progress} from "antd";
+import { Avatar, Tooltip, Button, Modal, List, Progress, Badge } from "antd";
 import { EditOutlined, CheckOutlined, UploadOutlined, QuestionOutlined, CloseOutlined, UserSwitchOutlined, CloseCircleFilled } from "@ant-design/icons";
 import ReactMarkdown from "react-markdown";
 import AddLessonForm from '../forms/AddLessonForm';
 import { toast } from "react-toastify";
 import Item from "antd/lib/list/Item";
+import Resizer from "react-image-file-resizer";
 
 
 const CourseView = () => {
@@ -56,14 +57,14 @@ const CourseView = () => {
   // FUNCTIONS FOR ADD LESSON
   const handleAddLesson = async (e) => {
     e.preventDefault();
-    // console.log(values);
+    console.log(values);
     try {
       const { data } = await axios.post(
         `/api/course/lesson/${slug}/${course.instructor._id}`,
         values
       );
       // console.log(data)
-      setValues({ ...values, title: "", content: "", video: {} });
+      setValues({ ...values, title: "", content: "", video: {}, lessonimage: {} });
       setProgress(0);
       setUploadButtonText("Upload video");
       setVisible(false);

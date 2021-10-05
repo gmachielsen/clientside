@@ -5,9 +5,11 @@ import CourseCreateForm from "../forms/CourseCreateForm";
 import Resizer from "react-image-file-resizer";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
-import {List, Avatar, Modal } from 'antd';
+import {List, Avatar, Modal, Button, Badge, Switch, Progress } from 'antd';
 import { DeleteOutlined } from "@ant-design/icons";
 import UpdateLessonForm from "../forms/UpdateLessonForm";
+import ReactPlayer from 'react-player';
+
 
 const { Item } = List;
 
@@ -26,6 +28,7 @@ const CourseEdit = () => {
   const [image, setImage] = useState({});
   const [preview, setPreview] = useState("");
   const [uploadButtonText, setUploadButtonText] = useState("Upload Image");
+  const [imageLessonPreview, setImageLessonPreview] = useState("");
 
   // state for lessons update
   const [visible, setVisible] = useState(false);
@@ -35,6 +38,7 @@ const CourseEdit = () => {
   );
   const [progress, setProgress] = useState(0);
   const [uploading, setUploading] = useState(false);
+  const [uploadImageButtonText, setuploadImageButtonText] = useState("Upload lesson image");
 
 
 
@@ -97,6 +101,51 @@ const CourseEdit = () => {
       toast("Image upload failed. Try later.");
     }
   };
+
+
+  const handleLessonImage = (e) => {
+    let file = e.target.files[0];
+    setImageLessonPreview(window.URL.createObjectURL(file));
+    setuploadImageButtonText(file.name);
+    setValues({ ...values, loading: true });
+    setVisible(true)
+
+    // resize
+    Resizer.imageFileResizer(file, 720, 500, "JPEG", 100, 0, async (uri) => {
+      try {
+        let { data } = await axios.post("/api/course/upload-lessonpicture", {
+          lessonimage: uri,
+        });
+        console.log("Image Lesson Uploaded", data);
+        // set lesson image in te state 
+        // setLessonImage(data);
+
+        setCurrent({ ...current, lessonimage: data });
+        // lessonpicture: data 
+      } catch (err) {
+        console.log(err);
+        setCurrent({ ...current, lessonimage: data });
+        toast("LessonImage upload failed, Try later.");
+      }
+    });
+  };
+
+
+  const handleLessonImageRemove = async () => {
+    try {
+      const res = await axios.post("/api/course/lessonremove-image",  current.lessonimage);
+      console.log(res, "lessonimage data");
+      setuploadImageButtonText("Upload Image");
+      setImageLessonPreview({});
+      setCurrent({ ...current, lessonimage: {} });
+      setVisible(false);
+    } catch (err) {
+      console.log(err);
+      setValues({ ...values, loading: false });
+      toast("Lesson Image removed failed. Try later.");
+    }
+  }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -205,6 +254,87 @@ const CourseEdit = () => {
     }
   };
 
+  const updateLessonForm = () => (
+    <div className="container pt-3">
+    {/* {JSON.stringify(current)} */}
+    <form onSubmit={handleUpdateLesson}>
+      <input
+        type="text"
+        className="form-control square"
+        onChange={(e) => setCurrent({ ...current, title: e.target.value })}
+        value={current.title}
+        autoFocus
+        required
+      />
+
+      <textarea
+        className="form-control mt-3"
+        cols="7"
+        rows="7"
+        onChange={(e) => setCurrent({ ...current, content: e.target.value })}
+        value={current.content}
+      ></textarea>
+
+      <div>
+        {!uploading && current.video && current.video.Location && (
+          <div className="pt-2 d-flex justify-content-center">
+            <ReactPlayer
+              url={current.video.Location}
+              width="410px"
+              height="240px"
+              controls
+            />
+          </div>
+        )}
+          <label className="btn btn-dark btn-block text-left mt-3">
+            {uploadVideoButtonText}
+            <input onChange={handleVideo} type="file" accept="video/*" hidden />
+        </label>
+      </div>
+
+      {progress > 0 && (
+        <Progress
+          className="d-flex justify-content-center pt-2"
+          percent={progress}
+          steps={10}
+        />
+      )}
+      <div className="d-flex justify-content-between">
+        <span className="pt-3 badge"><p>Preview</p></span>
+        <p>Preview</p>
+        <Switch 
+          className="float-right mt-2" 
+          disabled={uploading} 
+          checked={current.free_preview}
+          name="fee_preview"
+          onChange={(v) => setCurrent({ ...current, free_preview: v })} 
+        />
+      </div>
+      <div className="d-flex justify-content-center">
+                  <label className="btn btn-dark btn-block text-left mt-3">
+                      {uploadImageButtonText}
+                      <input type="file" name="lessonimage" onChange={handleLessonImage} accept="image/*" hidden/>
+                  </label>
+                  {imageLessonPreview && visible && (
+                      <Badge count="X" onClick={handleLessonImageRemove} className="pointer">
+                          <Avatar width={200} src={imageLessonPreview} />
+                      </Badge>
+                  )}
+              </div>
+      <Button
+        onClick={handleUpdateLesson}
+        className="col mt-3"
+        size="large"
+        type="primary"
+        loading={uploading}
+        shape="round"
+      >
+        Save
+      </Button>
+    </form>
+  </div>
+  )
+
   return (
     <InstructorRoute>
       <h1 className="jumbotron text-center square">Update Course</h1>
@@ -267,7 +397,7 @@ const CourseEdit = () => {
         onCancel={() => setVisible(false)}
         footer={null}
       >
-        <UpdateLessonForm
+        {/* <UpdateLessonForm
           current={current}
           setCurrent={setCurrent}
           handleVideo={handleVideo}
@@ -275,7 +405,9 @@ const CourseEdit = () => {
           uploadVideoButtonText={uploadVideoButtonText}
           progress={progress}
           uploading={uploading}
-        />
+        /> */}
+                {updateLessonForm()}
+
         {/* <pre>{JSON.stringify(current, null, 4)}</pre> */}
       </Modal>
     </InstructorRoute>
