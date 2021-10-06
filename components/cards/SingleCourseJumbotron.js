@@ -33,9 +33,9 @@ const SingleCourseJumbotron = ({
   return (
     <div className=" bg-primary square">
       <div className="row" style={{ padding: '30px', backgroundColor: "PeachPuff", fontFamily: "serif", fontStyle: 'normal', fontWeight: "bold", color: '#002546'}}>
-        <div className="col-md-8">
+        <div className="col-md-4 offset-2" style={{ paddingTop: "13px"}}>
           {/* title */}
-          <h1 className="text-light font-weight-bold" style={{ color: '#66574A!important', fontSize: '65px' }}>{name}</h1>
+          <h1 className="text-light font-weight-bold" style={{ color: '#21016e!important', fontSize: '65px' }}>{name}</h1>
           {/* description */}
           <p className="lead">
             {description && description.substring(0, 160)}...
@@ -51,7 +51,7 @@ const SingleCourseJumbotron = ({
           {/* updated at */}
           <p>Last udpated {new Date(updatedAt).toLocaleDateString()}</p>
           {/* price */}
-          <h4 className="text-light" style={{ color: '#66574A!important'}}>
+          <h4 className="text-light" style={{ color: '#ff4d4f!important'}}>
             {paid
               ? currencyFormatter({
                   amount: price,

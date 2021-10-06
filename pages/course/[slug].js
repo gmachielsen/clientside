@@ -22,6 +22,7 @@ const SingleCourse = ({ course }) => {
 
   useEffect(() => {
     if (user && course) checkEnrollment();
+    console.log(course.lessons, "course lesson");
   }, [user, course]);
 
   const checkEnrollment = async () => {
