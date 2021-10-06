@@ -150,12 +150,14 @@ const CourseEdit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setVisible(false);
       // console.log(values);
       const { data } = await axios.put(`/api/course/${slug}`, {
         ...values,
         image,
       });
       toast("Course updated!");
+      setVisible(true);
       // router.push("/instructor");
     } catch (err) {
       toast(err.response.data);
@@ -238,18 +240,22 @@ const CourseEdit = () => {
   const handleUpdateLesson = async (e) => {
     // console.log("handle update lesson");
     e.preventDefault();
+    setUploading(true);
+    setVisible(false);
     const { data } = await axios.put(
       `/api/course/lesson/${slug}/${current._id}`,
       current
     );
     setUploadVideoButtonText("Upload Video")
-    setVisible(false)
+    
     // update ui 
     if(data.ok) {
       let arr = values.lessons;
       const index = arr.findIndex((el) => el._id === current._id);
       arr[index] = current;
       setValues({ ...values, lessons: arr });
+      setVisible(true);
+      setUploading(false);
       toast('Lesson updated');
     }
   };

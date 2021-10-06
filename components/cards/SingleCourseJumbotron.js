@@ -31,11 +31,11 @@ const SingleCourseJumbotron = ({
   } = course;
 
   return (
-    <div className="jumbotron bg-primary square">
-      <div className="row">
+    <div className=" bg-primary square">
+      <div className="row" style={{ padding: '30px', backgroundColor: "PeachPuff", fontFamily: "serif", fontStyle: 'normal', fontWeight: "bold", color: '#002546'}}>
         <div className="col-md-8">
           {/* title */}
-          <h1 className="text-light font-weight-bold">{name}</h1>
+          <h1 className="text-light font-weight-bold" style={{ color: '#66574A!important', fontSize: '65px' }}>{name}</h1>
           {/* description */}
           <p className="lead">
             {description && description.substring(0, 160)}...
@@ -51,7 +51,7 @@ const SingleCourseJumbotron = ({
           {/* updated at */}
           <p>Last udpated {new Date(updatedAt).toLocaleDateString()}</p>
           {/* price */}
-          <h4 className="text-light">
+          <h4 className="text-light" style={{ color: '#66574A!important'}}>
             {paid
               ? currencyFormatter({
                   amount: price,
@@ -75,7 +75,7 @@ const SingleCourseJumbotron = ({
                 url={lessons[0].video.Location}
                 light={image.Location}
                 width="100%"
-                height="225px"
+                height="300px"
               />
             </div>
           ) : (
