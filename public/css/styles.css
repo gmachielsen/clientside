@@ -11,3 +11,9 @@
 .pointer {
     cursor: pointer;
 }
+
+.container {
+    overflow: hidden;
+    min-width: 100%;
+    padding: 0;
+}
