@@ -7,6 +7,7 @@ import SingleCourseLessons from "../../components/cards/SingleCourseLessons";
 import { Context } from "../../context";
 import { toast } from "react-toastify";
 import { loadStripe } from "@stripe/stripe-js";
+import LessonCard from "../../components/cards/LessonCard";
 
 const SingleCourse = ({ course }) => {
   // state
@@ -75,19 +76,27 @@ const SingleCourse = ({ course }) => {
   return (
     <>
       {/* <pre>{JSON.stringify(course, null, 4)}</pre> */}
-      <SingleCourseJumbotron
-        course={course}
-        showModal={showModal}
-        setShowModal={setShowModal}
-        preview={preview}
-        setPreview={setPreview}
-        user={user}
-        loading={loading}
-        handlePaidEnrollment={handlePaidEnrollment}
-        handleFreeEnrollment={handleFreeEnrollment}
-        enrolled={enrolled}
-        setEnrolled={setEnrolled}
-      />
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <SingleCourseJumbotron
+              course={course}
+              showModal={showModal}
+              setShowModal={setShowModal}
+              preview={preview}
+              setPreview={setPreview}
+              user={user}
+              loading={loading}
+              handlePaidEnrollment={handlePaidEnrollment}
+              handleFreeEnrollment={handleFreeEnrollment}
+              enrolled={enrolled}
+              setEnrolled={setEnrolled}
+            />
+          </div>
+        </div>
+
+      </div>
+
 
       <PreviewModal
         showModal={showModal}
@@ -95,14 +104,32 @@ const SingleCourse = ({ course }) => {
         preview={preview}
       />
 
-      {course.lessons && (
+      {/* {course.lessons && (
         <SingleCourseLessons
           lessons={course.lessons}
           setPreview={setPreview}
           showModal={showModal}
           setShowModal={setShowModal}
         />
-      )}
+      )} */}
+            <div className="container" style={{ justifyContent: 'center' }}>
+              <div className="row" style={{ justifyContent: 'center', textAlign: 'center'}}>
+                  <h1 style={{ marginTop: '100px', marginBottom: '100px'}}>Course overview</h1>
+              
+
+                {course.lessons.map((lesson) => (
+                  <div key={lesson._id} className="col-sm-12 col-md-12 col-lg-6" style={{ textAlign: 'center ', float: 'none', margin: 'auto', display: 'contents'}}>
+                    <LessonCard 
+                     lesson={lesson} 
+                     setPreview={setPreview}
+                     showModal={showModal}
+                     setShowModal={setShowModal}
+                    />
+                  </div>
+                  )
+                )}
+              </div>
+            </div>
     </>
   );
 };
