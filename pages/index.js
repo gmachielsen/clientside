@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { BackTop, Button } from 'antd';
 import axios from "axios";
 import CourseCard from '../components/cards/CourseCard';
@@ -7,13 +7,12 @@ import Footer from "../components/Footer";
 import Cover from '../components/cards/Cover';
 import TopNavIndex from "../components/TopNavIndex";
 import Media from 'react-media';
-
+import ScrollButton from '../components/ScrollButton'; 
+import DownCircleOutlined from "@ant-design/icons";
+import { FaArrowCircleDown, FaArrowDown } from 'react-icons/fa';
 const Index = ({ courses }) => {
-  const style = {
-    '@media (max-width: 500px)': {
-        color: 'red',
-    }
-  }
+  const divRef = useRef();
+
   // const [courses, setCourses] = useState([]);
 
   
@@ -110,7 +109,15 @@ const Index = ({ courses }) => {
           
           
         />
-        
+      <Button
+        onClick={() => {
+          divRef.current.scrollIntoView({ behavior: "smooth" });
+        }} style={{ position: "absolute", zIndex: 3, top: "90vh", color: "red",backgroundColor: "transparent", justifyContent: "center" }}
+       ><FaArrowDown /></Button>
+        {/* <button onclick= {{document.getElementById('courses').scrollIntoView()}}>
+              down
+           </button> */}
+        {/* <ScrollButton />  */}
 
           {/* <p style={{ zIndex: 2, fontSize: '35px', color: 'aliceblue', textAlign: 'center', position: 'absolute', left: 0, right: 0, top: '60%', fontFamily: 'serif', fontWeight: 'bold'}}>mastering art is an art</p> */}
           <Cover style={{ zIndex: 1 }} />
@@ -119,7 +126,7 @@ const Index = ({ courses }) => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-12 text-center">
-              <h1 style={{ fontFamily: 'serif', fontWeight: 'bold', color: 'brown' }}>
+              <h1 ref={divRef} id="courses" style={{ fontFamily: 'serif', fontWeight: 'bold', color: 'brown' }}>
                 Our Courses
               </h1>
             </div>
