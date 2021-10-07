@@ -38,7 +38,7 @@ const TopNavIndex = () => {
   };
 
   return (
-    <Menu mode="horizontal" selectedKeys={[current]} className="mb-2" style={{ background: "transparent", color: "antiquewhite", border: "0", fontSize: "21px!important", marginTop: "10px", marginLeft: "10px" }}>
+    <Menu mode="horizontal" selectedKeys={[current]} className="mb-2" style={{ background: "transparent", color: "antiquewhite", border: "0", fontSize: "21px!important", marginTop: "10px", marginLeft: "10px", textDecoration: "none" }}>
       <Item
         key="/"
         onClick={(e) => setCurrent(e.key)}

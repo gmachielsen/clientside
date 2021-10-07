@@ -6,8 +6,14 @@ import CourseCard from '../components/cards/CourseCard';
 import Footer from "../components/Footer";
 import Cover from '../components/cards/Cover';
 import TopNavIndex from "../components/TopNavIndex";
+import Media from 'react-media';
 
 const Index = ({ courses }) => {
+  const style = {
+    '@media (max-width: 500px)': {
+        color: 'red',
+    }
+  }
   // const [courses, setCourses] = useState([]);
 
   
@@ -29,10 +35,83 @@ const Index = ({ courses }) => {
               <TopNavIndex />
           </div>
 
-          <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif' }}>
+          <Media query={{ maxWidth: 5000, minWidth: 3500}} render={() =>
+            (
+              <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif', fontSize: "150px" }}>
+              Art Masters Academy
+              {/* <img src={require('../../public/coverphoto.jpg')} /> */}
+            </h1>          
+            )}
+          />
+
+          <Media query={{ maxWidth: 3500, minWidth: 2500}} render={() =>
+            (
+              <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif', fontSize: "150px" }}>
+              Art Masters Academy
+              {/* <img src={require('../../public/coverphoto.jpg')} /> */}
+            </h1>          
+            )}
+          />
+
+          <Media query={{ maxWidth: 2500, minWidth: 1900}} render={() =>
+            (
+              <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif', fontSize: "150px" }}>
+              Art Masters Academy
+              {/* <img src={require('../../public/coverphoto.jpg')} /> */}
+            </h1>          
+            )}
+          />
+
+          <Media query={{ maxWidth: 1899, minWidth: 1600}} render={() =>
+            (
+              <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif', fontSize: "150px" }}>
+              Art Masters Academy
+              {/* <img src={require('../../public/coverphoto.jpg')} /> */}
+            </h1>          
+            )}
+          />
+
+          <Media query={{ maxWidth: 1599, minWidth: 1300}} render={() =>
+            (
+              <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif', fontSize: "125px" }}>
+              Art Masters Academy
+              {/* <img src={require('../../public/coverphoto.jpg')} /> */}
+            </h1>          
+            )}
+          />
+
+        <Media query={{ maxWidth: 1299, minWidth: 1099}} render={() =>
+            (
+              <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif', fontSize: "100px" }}>
+              Art Masters Academy
+              {/* <img src={require('../../public/coverphoto.jpg')} /> */}
+            </h1>          
+            )}
+        />
+
+        <Media query={{ maxWidth: 1099, minWidth: 700}} render={() =>
+            (
+              <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif', fontSize: "75px" }}>
+              Art Masters Academy
+              {/* <img src={require('../../public/coverphoto.jpg')} /> */}
+            </h1>          
+            )}
+        />
+        <Media 
+          
+          query={{ maxWidth: 699 }} render={() =>
+          (
+            <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif', fontSize: "45px" }}>
             Art Masters Academy
             {/* <img src={require('../../public/coverphoto.jpg')} /> */}
-          </h1>
+          </h1>          
+          )}
+
+          
+          
+        />
+        
+
           {/* <p style={{ zIndex: 2, fontSize: '35px', color: 'aliceblue', textAlign: 'center', position: 'absolute', left: 0, right: 0, top: '60%', fontFamily: 'serif', fontWeight: 'bold'}}>mastering art is an art</p> */}
           <Cover style={{ zIndex: 1 }} />
         </div>
