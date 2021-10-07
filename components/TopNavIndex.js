@@ -38,11 +38,11 @@ const TopNavIndex = () => {
   };
 
   return (
-    <Menu mode="horizontal" selectedKeys={[current]} className="mb-2" style={{ background: "transparent", color: "antiquewhite", border: "0" }}>
+    <Menu mode="horizontal" selectedKeys={[current]} className="mb-2" style={{ background: "transparent", color: "antiquewhite", border: "0", fontSize: "21px!important", marginTop: "10px", marginLeft: "10px" }}>
       <Item
         key="/"
         onClick={(e) => setCurrent(e.key)}
-        icon={<AppstoreOutlined />}
+        // icon={<AppstoreOutlined />}
       >
         <Link href="/">
           <a>App</a>
@@ -53,7 +53,7 @@ const TopNavIndex = () => {
                <Item
                key="/instructor/course/create"
                onClick={(e) => setCurrent(e.key)}
-               icon={<CarryOutOutlined />}
+              //  icon={<CarryOutOutlined />}
              >
                <Link href="/instructor/course/create">
                  <a style={{ color: "antiquewhite" }}>Create Course</a>
@@ -63,7 +63,7 @@ const TopNavIndex = () => {
             <Item
               key="/user/become-instructor"
               onClick={(e) => setCurrent(e.key)}
-              icon={<TeamOutlined />}
+              // icon={<TeamOutlined />}
             >
               <Link href="/user/become-instructor">
                 <a style={{ color: "antiquewhite" }}>Become Instructor</a>
@@ -75,7 +75,7 @@ const TopNavIndex = () => {
       <Item
         key="/instructor"
         onClick={(e) => setCurrent(e.key)}
-        icon={<TeamOutlined />}
+        // icon={<TeamOutlined />}
         className="float-right"
       >
         <Link href="/instructor">
@@ -89,7 +89,7 @@ const TopNavIndex = () => {
         <Item
           key="/login"
           onClick={(e) => setCurrent(e.key)}
-          icon={<LoginOutlined />}
+          // icon={<LoginOutlined />}
         >
           <Link href="/login">
             <a style={{ color: "antiquewhite" }}>Login</a>
@@ -99,7 +99,7 @@ const TopNavIndex = () => {
         <Item
           key="/register"
           onClick={(e) => setCurrent(e.key)}
-          icon={<UserAddOutlined />}
+          // icon={<UserAddOutlined />}
         >
           <Link href="/register">
             <a style={{ color: "antiquewhite" }}>Register</a>
@@ -109,14 +109,14 @@ const TopNavIndex = () => {
      )}
 
       {user !== null && (
-        <SubMenu icon={<CoffeeOutlined />} title={user && user.name} className="float-right">
+        <SubMenu title={user && user.name} className="float-right">
             <ItemGroup>
               <Item key="/user">
                 <Link href="/user">
                   <a>Dashboard</a>
                 </Link>
               </Item>
-              <Item onClick={logout} icon={<LogoutOutlined />} className="float-right" style={{}}>
+              <Item onClick={logout} className="float-right" style={{}}>
                 Logout
               </Item>
             </ItemGroup>

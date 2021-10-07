@@ -29,11 +29,11 @@ const Index = ({ courses }) => {
               <TopNavIndex />
           </div>
 
-          <h1 className="text-center" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '25%', fontSize: '100px', color: 'blanchedalmond', zIndex: 2, fontFamily: 'serif' }}>
+          <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif' }}>
             Art Masters Academy
             {/* <img src={require('../../public/coverphoto.jpg')} /> */}
           </h1>
-          <p style={{ zIndex: 2, fontSize: '35px', color: 'aliceblue', textAlign: 'center', position: 'absolute', left: 0, right: 0, top: '60%', fontFamily: 'serif', fontWeight: 'bold'}}>mastering art is an art</p>
+          {/* <p style={{ zIndex: 2, fontSize: '35px', color: 'aliceblue', textAlign: 'center', position: 'absolute', left: 0, right: 0, top: '60%', fontFamily: 'serif', fontWeight: 'bold'}}>mastering art is an art</p> */}
           <Cover style={{ zIndex: 1 }} />
         </div>
         <br/><br/>
