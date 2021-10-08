@@ -90,8 +90,10 @@ const Index = ({ courses }) => {
               divRef.current.scrollIntoView({ behavior: "smooth" });
             }} style={{  color: "red",backgroundColor: "transparent", position: "relative" }}
           >
-            ddd
+         <div class="arrow"></div>
+
           </Button>
+
         </div>
         </div>
   
