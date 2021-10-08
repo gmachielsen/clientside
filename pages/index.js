@@ -9,7 +9,6 @@ import TopNavIndex from "../components/TopNavIndex";
 import Media from 'react-media';
 import ScrollButton from '../components/ScrollButton'; 
 import DownCircleOutlined from "@ant-design/icons";
-import useMediaQuery from "../hooks/useMediaQuery";
 
 const Index = ({ courses }) => {
   const isDesktop = useMediaQuery('(min-width: 960px)');
