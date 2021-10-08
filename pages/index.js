@@ -82,7 +82,7 @@ const Index = ({ courses }) => {
 
           {/* <p style={{ zIndex: 2, fontSize: '35px', color: 'aliceblue', textAlign: 'center', position: 'absolute', left: 0, right: 0, top: '60%', fontFamily: 'serif', fontWeight: 'bold'}}>mastering art is an art</p> */}
           <Cover style={{ zIndex: 1, position: "absolute" }} />
-          <div style={{ position: "absolute", zIndex: 3, top: "90vh", textAlign: "center", right: 0, left: 0 }}>
+          <div style={{ position: "absolute", zIndex: 3, top: "85vh", textAlign: "center", right: 0, left: 0 }}>
           <Button
             onClick={() => {
               divRef.current.scrollIntoView({ behavior: "smooth" });
