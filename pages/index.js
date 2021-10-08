@@ -28,7 +28,7 @@ const Index = ({ courses }) => {
     return (
       <>
 
-      <div style={{position: 'absolute', width: '100%' }}>
+      {/* <div style={{ width: '100%' }}> */}
         <div className="cover" style={{ padding: 0, position: 'relative', textAlign: 'center' }}>
           <div style={{ position: 'absolute', zIndex: 2, width: "100%"}}>
               <TopNavIndex />
@@ -100,19 +100,26 @@ const Index = ({ courses }) => {
                           </h1>          
                           )}
           />
-      <Button
-        onClick={() => {
-          divRef.current.scrollIntoView({ behavior: "smooth" });
-        }} style={{ position: "absolute", zIndex: 3, top: "90vh", color: "red",backgroundColor: "transparent", justifyContent: "center" }}
-       >ddd</Button>
+   
+      
         {/* <button onclick= {{document.getElementById('courses').scrollIntoView()}}>
               down
            </button> */}
         {/* <ScrollButton />  */}
 
           {/* <p style={{ zIndex: 2, fontSize: '35px', color: 'aliceblue', textAlign: 'center', position: 'absolute', left: 0, right: 0, top: '60%', fontFamily: 'serif', fontWeight: 'bold'}}>mastering art is an art</p> */}
-          <Cover style={{ zIndex: 1 }} />
+          <Cover style={{ zIndex: 1, position: "absolute" }} />
+          <div style={{ position: "absolute", zIndex: 3, top: "90vh", textAlign: "center", right: 0, left: 0 }}>
+          <Button
+            onClick={() => {
+              divRef.current.scrollIntoView({ behavior: "smooth" });
+            }} style={{  color: "red",backgroundColor: "transparent", position: "relative" }}
+          >
+            ddd
+          </Button>
         </div>
+        </div>
+  
         <br/><br/>
         <div className="container-fluid">
           <div className="row">
@@ -141,7 +148,7 @@ const Index = ({ courses }) => {
         </div>
                   <br/><br/><br/>
           <Footer />
-        </div>
+        {/* </div> */}
       </>
     );
   };
