@@ -11,7 +11,6 @@ import ScrollButton from '../components/ScrollButton';
 import DownCircleOutlined from "@ant-design/icons";
 
 const Index = ({ courses }) => {
-  const isDesktop = useMediaQuery('(min-width: 960px)');
 
   const divRef = useRef();
 
@@ -87,7 +86,7 @@ const Index = ({ courses }) => {
           <Button
             onClick={() => {
               divRef.current.scrollIntoView({ behavior: "smooth" });
-            }} style={{  color: "red",backgroundColor: "transparent", position: "relative" }}
+            }} style={{  color: "red", backgroundColor: "transparent", position: "relative", border: "none", ripple: "none" }}
           >
          <div class="arrow"></div>
 
@@ -97,7 +96,7 @@ const Index = ({ courses }) => {
         </div>
   
         <br/><br/>
-        <div isDesktop={isDesktop} className="container-fluid">
+        <div  className="container-fluid">
           <div className="row">
             <div className="col-12 text-center">
               <h1  ref={divRef} id="courses" style={{ fontFamily: 'serif', fontWeight: 'bold', color: 'brown' }}>
