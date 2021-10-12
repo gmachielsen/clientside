@@ -3,6 +3,7 @@ import { Menu } from "antd";
 import Link from "next/link";
 import 'jquery';
 import jQuery from 'jquery';
+import $ from 'jquery';
 
 import {
   AppstoreOutlined,
@@ -53,7 +54,7 @@ const TopNavIndex = () => {
           init();
       }();
       
-  })(jQuery);
+  })();
 
   }, [process.browser && window.location.pathname]);
 
