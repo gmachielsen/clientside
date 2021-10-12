@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Menu } from "antd";
 import Link from "next/link";
+import 'jquery';
 import jQuery from 'jquery';
 
 import {
