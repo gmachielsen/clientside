@@ -42,12 +42,23 @@ const TopNavIndex = () => {
   const handleClick = () => {
     if (displayNav == false) {
       setDisplayNav(true);
+      const h1 = document.querySelector("h1");
+      h1.style.visibility = "hidden";
+      h1.style.opacity = 0;
+      h1.style.transition = "visibility 2s, opacity 0.2s linear"
+      // h1.style.transition = "all 2s ease-in-out";
+      // h1.style.display = "none";
       document.body.classList.add("nav-active");
-      console.log(displayNav);
+      // console.log(displayNav);
     } else {
       setDisplayNav(false);
-      document.body.classList.remove('nav-active')
-      console.log(displayNav);
+      document.body.classList.remove('nav-active');
+      const h1 = document.querySelector("h1");
+      // h1.style.display = "";
+      h1.style.visibility = "visible";
+      h1.style.opacity = 1;
+      h1.style.transition = "visibility 2s, opacity 1s linear"
+      // console.log(displayNav);
     }
   }
  
