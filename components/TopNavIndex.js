@@ -21,7 +21,7 @@ const { Item, SubMenu, ItemGroup } = Menu;
 
 const TopNavIndex = () => {
   const [current, setCurrent] = useState("");
-
+  const [displayNav, setDisplayNav] = useState(false);
   const { state, dispatch } = useContext(Context);
   const { user } = state;
 
@@ -29,9 +29,6 @@ const TopNavIndex = () => {
 
   useEffect(() => {
     process.browser && setCurrent(window.location.pathname);
-
-
-
   }, [process.browser && window.location.pathname]);
 
   const logout = async () => {
@@ -42,33 +39,43 @@ const TopNavIndex = () => {
     router.push("/login");
   };
 
+  const handleClick = () => {
+    if (displayNav == false) {
+      setDisplayNav(true);
+      document.body.classList.add("nav-active");
+      console.log(displayNav);
+    } else {
+      setDisplayNav(false);
+      document.body.classList.remove('nav-active')
+      console.log(displayNav);
+    }
+  }
+ 
   return (
     <>
     <header class="cd-header">
       <div class="header-wrapper">
         <div class="logo-wrap">
-          <a href="/" class="hover-target"><span>ArtMasters</span>Acdemy</a>
+          <a style={{ fontSize: "10px" }}href="/" class="hover-target"><span>ArtMasters</span>Acdemy</a>
         </div>
         <div class="nav-but-wrap">
-          <div class="menu-icon hover-target">
-            <span class="menu-icon__line menu-icon__line-left"></span>
-            <span class="menu-icon__line"></span>
-            <span class="menu-icon__line menu-icon__line-right"></span>
-          </div>
+          <button class="hamburger" onClick={handleClick}>
+            <div class="menu-icon hover-target">
+              <span class="menu-icon__line menu-icon__line-left"></span>
+              <span class="menu-icon__line"></span>
+              <span class="menu-icon__line menu-icon__line-right"></span>
+            </div>
+          </button>
         </div>
       </div>
-    </header><div class="nav">
+    </header>
+      <div class="nav">
         <div class="nav__content">
           <ul class="nav__list">
             <li class="nav__list-item active-nav"><a href="/" class="hover-target">Home</a></li>
             <li class="nav__list-item"><a href="" class="hover-target">Diensten</a></li>
             <li class="nav__list-item"><a href="" class="hover-target">Ons werk</a></li>
             <li class="nav__list-item"><a href="" class="hover-target">Contact</a></li>
-          </ul>
-          <ul>
-            <a href="#" onclick="return true"><i class="fab fa-whatsapp fa-2x"></i></a>
-            <a href="#" onclick="return true"><i class="fas fa-phone fa-2x"></i></a>
-            <a href="#" onclick="return true"><i class="fas fa-envelope-square fa-2x"></i></a>
           </ul>
         </div>
       </div>

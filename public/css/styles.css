@@ -77,7 +77,7 @@
 
 
 .cd-header{
-  position: fixed;
+  position: absolute;
 width:100%;
 top:0;
 left:0;
@@ -366,6 +366,10 @@ body.nav-active .nav__list-item:nth-child(10) {
         transition-delay: 1.7s;
 }
 
+.hamburger {
+  background-color: transparent;
+  border: none;
+}
 /* .switch-wrap {
 position: absolute;
 top: 50%;
