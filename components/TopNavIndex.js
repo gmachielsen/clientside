@@ -27,9 +27,9 @@ const TopNavIndex = () => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    process.browser && setCurrent(window.location.pathname);
-  }, [process.browser && window.location.pathname]);
+  // useEffect(() => {
+  //   process.browser && setCurrent(window.location.pathname);
+  // }, [process.browser && window.location.pathname]);
 
   const logout = async () => {
     dispatch({ type: "LOGOUT" });

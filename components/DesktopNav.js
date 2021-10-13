@@ -50,25 +50,25 @@ const DesktopNav = () => {
                     </div>
                 </div>
             </header>
-            <div className="navbar" style={{ justifyContent: "center" }}>
-                <div className="navbar_content">
+            <div className="navbar" style={{  }}>
+                <div className="navbar_content" style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-end", width: "100%" }}>
  
-                    <ul className="navbar_list center" style={{ display: "flex", flexDirection: "row"}}>
-                        <li class="navbar__list-item"><a href="" class="hover-target">Online Courses</a></li>
-                        <li class="navbar__list-item"><a href="" class="hover-target">Offline Courses</a></li>
-                        <li class="navbar__list-item"><a href="" class="hover-target">Live Sessions</a></li>
-                        <li class="navbar__list-item"><a href="" class="hover-target">About</a></li>
+                    <ul className="navbar_list center" style={{ justifyContent: "center", width: "calc(100% / 3)", padding: 0, margin: 0, display: "flex", flexDirection: "row", paddingTop: "40px", fontSize: "20px", color: "white", textDecoration: "none", listStyleType: "none", letterSpacing: "2px" }}>
+                        <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "white"}}>Online Courses</a></li>
+                        <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "white"}}>Offline Courses</a></li>
+                        <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "white"}}>Live Sessions</a></li>
+                        <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "white"}}>About</a></li>
                     </ul>
-                    <ul className="navbar_list right">
-                        {user && (
+                    <ul className="navbar_list right" style={{ justifyContent: "flex-end", width: "calc(100% / 3)", display: "flex", flexDirection: "row", margin: 0, padding: 0, listStyleType: "none", paddingTop: "40px", fontSize: "20px"}}>
+                        {user == null && (
                             <>
-                                <li class="navbar__list-item"><a href="/login" class="hover-target">Login</a></li>
-                                <li class="navbar__list-item"><a href="/register" class="hover-target">Register</a></li>
+                                <li class="navbar__list-item"><a style={{ padding: "15px", color: "white"}} href="/login" class="hover-target">Login</a></li>
+                                <li class="navbar__list-item"><a style={{ padding: "15px", color: "white"}} href="/register" class="hover-target">Register</a></li>
                             </>
                         )}
                         {user !== null && (
                             <>
-                                <li class="navbar__list-item"><a href="" class="hover-target">Logout</a></li>
+                                <li class="navbar__list-item"><a href="" style={{ padding: "75px", color: "white"}} class="hover-target">Logout</a></li>
                             </>
                         )}
                     </ul>
