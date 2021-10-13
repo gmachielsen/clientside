@@ -371,6 +371,9 @@ body.nav-active .nav__list-item:nth-child(10) {
   border: none;
 }
 
+a {
+  text-decoration: none;
+}
 /* .navbar_list .center {
         display: flex;
         flex-direction: row;
