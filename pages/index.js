@@ -10,8 +10,7 @@ import DesktopNav  from "../components/DesktopNav";
 import Media from 'react-media';
 import ScrollButton from '../components/ScrollButton'; 
 import DownCircleOutlined from "@ant-design/icons";
-// import { useMediaQuery } from 'react-responsive'
-import MediaQuery from 'react-responsive'
+import MediaQuery from 'react-responsive';
 
 const Index = ({ courses }) => {
 
