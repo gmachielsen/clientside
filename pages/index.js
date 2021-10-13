@@ -6,14 +6,22 @@ import CourseCard from '../components/cards/CourseCard';
 import Footer from "../components/Footer";
 import Cover from '../components/cards/Cover';
 import TopNavIndex from "../components/TopNavIndex";
+import DesktopNav  from "../components/DesktopNav";
 import Media from 'react-media';
 import ScrollButton from '../components/ScrollButton'; 
 import DownCircleOutlined from "@ant-design/icons";
+// import { useMediaQuery } from 'react-responsive'
+import MediaQuery from 'react-responsive'
 
 const Index = ({ courses }) => {
 
   const divRef = useRef();
-
+  // const isDesktopOrLaptop = useMediaQuery({
+  //   query: '(min-width: 1224px)', 
+  //   query: '(min-width: 1824px)'
+  // })
+  // const isBigScreen = useMediaQuery({ query: '(min-width: 1824px)' })
+  // const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
   // const [courses, setCourses] = useState([]);
 
   
@@ -26,52 +34,56 @@ const Index = ({ courses }) => {
   //   fetchCourses();
   // }, []);
 
+    useEffect(() => {
+
+    }, [])
+
     return (
       <>
 
+<div>
+    {/* <h1>Device Test!</h1>
+    <p>You are a desktop or laptop</p>
+    <p>You  have a huge screen</p>
+  <p>You are a tablet or mobile phone</p> */}
 
+  </div>
 
       {/* <div style={{ width: '100%' }}> */}
         <div className="cover" style={{ padding: 0, position: 'relative', textAlign: 'center' }}>
-          <div style={{ position: 'absolute', zIndex: 2, width: "100%"}}>
-              <TopNavIndex />
-          </div>
-          <Media queries={{
-          small: "(max-width: 599px)",
-          medium: "(min-width: 600px) and (max-width: 1199px)",
-          large: "(min-width: 1200px)"
-        }}>
-          {matches => (
-            <Fragment>
-              {matches.medium &&            
-                        <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif', fontSize: "75px" }}>
-                          Art Masters Academy
-                          {/* <img src={require('../../public/coverphoto.jpg')} /> */}
-                        </h1>  
-              }
-              {matches.small && 
-              
-                      <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif', fontSize: "45px" }}>
+        <MediaQuery minWidth={360} maxWidth={1224}>
+        <>
+                    <div style={{ position: 'absolute', zIndex: 2, width: "100%"}}>
+                      <TopNavIndex />     
+                    </div>
+                      
+                    <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif', fontSize: "45px" }}>
+                      Art Masters Academy
+                      {/* <img src={require('../../public/coverphoto.jpg')} /> */}
+                    </h1>
+                </>        </MediaQuery>
+        <MediaQuery minWidth={1224} maxWidth={1824}>
+        <>
+                  <div style={{ position: 'absolute', zIndex: 2, width: "100%"}}> 
+                    <TopNavIndex />
+                  </div>        
+                  <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif', fontSize: "75px" }}>
+                    Art Masters Academy
+                    {/* <img src={require('../../public/coverphoto.jpg')} /> */}
+                  </h1>  
+                </>        </MediaQuery>
+        <MediaQuery minWidth={1825}>
+        <>
+                 <div style={{ position: 'absolute', zIndex: 2, width: "100%"}}> 
+                    <DesktopNav />
+                  </div>    
+                  <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif', fontSize: "150px" }}>
                         Art Masters Academy
                         {/* <img src={require('../../public/coverphoto.jpg')} /> */}
-                      </h1>
-              }
-
-    
-              {matches.large &&  
-                        <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif', fontSize: "150px" }}>
-                        Art Masters Academy
-                        {/* <img src={require('../../public/coverphoto.jpg')} /> */}
-                      </h1>    
-               
-              }
-            </Fragment>
-          )}
-        </Media>
-   
-           
-
-              
+                  </h1>  
+                </>          
+        </MediaQuery>
+                       
          
    
       

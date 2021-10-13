@@ -83,10 +83,24 @@ const TopNavIndex = () => {
       <div class="nav">
         <div class="nav__content">
           <ul class="nav__list">
-            <li class="nav__list-item active-nav"><a href="/" class="hover-target">Home</a></li>
-            <li class="nav__list-item"><a href="" class="hover-target">Diensten</a></li>
-            <li class="nav__list-item"><a href="" class="hover-target">Ons werk</a></li>
-            <li class="nav__list-item"><a href="" class="hover-target">Contact</a></li>
+            {/* <li class="nav__list-item active-nav"><a href="/" class="hover-target">Home</a></li> */}
+            {user === null && (
+              <>
+                <li class="nav__list-item"><a href="/login" class="hover-target">Login</a></li>
+                <li class="nav__list-item"><a href="/register" class="hover-target">Register</a></li>
+              </>
+            )}
+            <br />
+            <br />
+            <li class="nav__list-item"><a href="" class="hover-target">Online Courses</a></li>
+            <li class="nav__list-item"><a href="" class="hover-target">Offline Courses</a></li>
+            <li class="nav__list-item"><a href="" class="hover-target">Live Sessions</a></li>
+            <li class="nav__list-item"><a href="" class="hover-target">About</a></li>
+            {user !== null && (
+              <>
+                <li class="nav__list-item"><a href="" class="hover-target" onClick={logout}>Logout</a></li>
+              </>
+            )}
           </ul>
         </div>
       </div>

@@ -20,6 +20,7 @@
     "express": "^4.17.1",
     "http-proxy-middleware": "^2.0.0",
     "jquery": "^3.6.0",
+    "media-query-react": "^1.0.4",
     "next": "^10.2.3",
     "next-images": "^1.8.1",
     "react": "^17.0.2",
@@ -29,6 +30,7 @@
     "react-markdown": "^6.0.2",
     "react-media": "^1.10.0",
     "react-player": "^2.9.0",
+    "react-responsive": "^9.0.0-beta.4",
     "react-toastify": "^7.0.4"
   }
 }
