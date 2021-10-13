@@ -18,19 +18,19 @@ const CourseCard = ({ course }) => {
                         <img
                         src={image ? image.Location: image}
                         alt={name}
-                        style={{ height: "500px", objectFit: "cover" }}
+                        style={{ height: "500px", objectFit: "cover", filter: "brightness(0.5)" }}
                         className="p-1"
                         />
                     }
                 >                    
-                    <h2 style={{ fontWeight: 'normal'}}>{name}</h2>
-                    <p>by {instructor.name}</p>
+                    <h2 style={{ fontWeight: 'normal', textAlign: "center" }}>{name}</h2>
+                    {/* <p>by {instructor.name}</p> */}
                     <Badge 
                         count={category}
                         style={{ backgroundColor: "#03a9f4"}}
                         className="pb-2 mr-2"
                     />
-                    <h4 className="pt-2">{paid ? currencyFormatter({ 
+                    <h4 className="pt-2" style={{ textAlign: "center"}}>{paid ? currencyFormatter({ 
                         amount: price,
                         currency: "eur",
                     }): "Free"}</h4>
