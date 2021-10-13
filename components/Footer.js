@@ -20,7 +20,7 @@ const Footer = () => {
                                     <div className="subscribe input-group mb-3" style={{ justifyContent: 'center'}}>
                                         {/* style={{ justify-content: 'center' }} */}
                                             <div>
-                                                <Button href="/user/newsletter">Inschrijven</Button>
+                                                <Button href="/user/newsletter">Subscribe</Button>
                                             </div>        
                                     </div>
                                 </div>
