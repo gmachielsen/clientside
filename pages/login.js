@@ -7,8 +7,8 @@ import { Context } from "../context";
 import {useRouter} from 'next/router';
 
 const Login = () => {
-  const [email, setEmail] = useState("ryan@gmail.com");
-  const [password, setPassword] = useState("rrrrrr");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   // (global)state
@@ -51,10 +51,17 @@ const Login = () => {
 
   return (
     <>
-      <h1 className="jumbotron text-center bg-primary square">Login</h1>
+    <div className="container">
+    <br/>     
+      <br/>
+      <br/>
+   
+      <div className="row">
+      
+      <h1 className="text-center mt-6">Login</h1>
 
-      <div className="container col-md-4 offset-md-4 pb-5">
-        <form onSubmit={handleSubmit}>
+      <div className="container col-md-12 pb-5">
+        <form onSubmit={handleSubmit} className="col-8 offset-2">
           <input
             type="email"
             className="form-control mb-4 p-4"
@@ -95,6 +102,31 @@ const Login = () => {
           </Link>
         </p>
       </div>
+ 
+
+      </div>
+      <br/>     
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>     
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>     
+      <br/>
+      <br/>
+      <br/>
+  
+  
+    </div>
+     
     </>
   );
 };

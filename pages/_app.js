@@ -1,4 +1,6 @@
 import TopNav from "../components/TopNav";
+import NavDesktop from "../components/nav/NavDesktop";
+import TopNavIndex from "../components/TopNavIndex";
 import Footer from "../components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.css";
@@ -7,6 +9,7 @@ import {ToastContainer} from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "../context";
 import {useRouter} from 'next/router';
+import MediaQuery from 'react-responsive';
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -42,7 +45,14 @@ function MyApp({ Component, pageProps }) {
     return(
       <Provider>
       <ToastContainer position="top-center" />
-      <TopNav />
+      <MediaQuery minWidth={0} maxWidth={1223}>
+      <TopNavIndex />
+
+      </MediaQuery>
+      <MediaQuery minWidth={1224}>
+        <NavDesktop />
+      </MediaQuery>
+
         <Component {...pageProps} />
       {/* <Footer /> */}
      </Provider>
@@ -51,7 +61,13 @@ function MyApp({ Component, pageProps }) {
    return (
     <Provider>
     <ToastContainer position="top-center" />
-    <TopNav />
+    <MediaQuery minWidth={0} maxWidth={1223}>
+      <TopNavIndex />
+
+      </MediaQuery>
+      <MediaQuery minWidth={1224}>
+        <NavDesktop />
+      </MediaQuery>
       <Component {...pageProps} />
     <Footer />
    </Provider>

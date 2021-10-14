@@ -8,7 +8,7 @@ import {
   CoffeeOutlined,
   LoginOutlined,
   LogoutOutlined,
-  UserAddOutlined,
+  UserOutlined,
   CarryOutOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
@@ -16,9 +16,10 @@ import { Context } from "../context";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+const { Item, SubMenu, ItemGroup } = Menu;
 
 
-const DesktopNav = () => {
+const DesktopNavIndex = () => {
     const [current, setCurrent] = useState("");
     const { state, dispatch } = useContext(Context);
     const { user } = state;
@@ -45,7 +46,7 @@ const DesktopNav = () => {
             <header class="cd-header">
                 <div class="header-wrapper">
                     <div class="logo-wrap">
-                        <a style={{ fontSize: "10px" }}href="/" class="hover-target"><span>ArtMasters</span>Acdemy</a>
+                        <a style={{ fontSize: "10px" }}href="/" class="hover-target"><span>ArtMasters</span>Academy</a>
                        
                     </div>
                 </div>
@@ -68,7 +69,27 @@ const DesktopNav = () => {
                         )}
                         {user !== null && (
                             <>
-                                <li class="navbar__list-item"><a href="" style={{ padding: "75px", color: "white"}} class="hover-target">Logout</a></li>
+                                <div class="dropdown">
+                                    <span style={{ color: "white" }}><UserOutlined style={{ marginRight: "10px", marginBottom: "10px" }}/> {user && user.name}</span>
+                                    <div class="dropdown-content">
+                                        <Link href="/user">
+                                                <a>Dashboard</a>
+                                        </Link>                                    
+                                    </div>
+                                </div>
+                            {/* <Menu>
+                                    <SubMenu icon={<UserAddOutlined />} title={user && user.name} className="float-right">
+                                        <ItemGroup>
+                                        <Item key="/user">
+                                            <Link href="/user">
+                                            <a>Dashboard</a>
+                                            </Link>
+                                        </Item>
+                                       
+                                        </ItemGroup>
+                                    </SubMenu>
+                            </Menu> */}
+                                <li class="navbar__list-item"><a href="" style={{ padding: "75px", color: "white"}} class="hover-target" onClick={logout}>Logout</a></li>
                             </>
                         )}
                     </ul>
@@ -79,4 +100,4 @@ const DesktopNav = () => {
     )
 } 
 
-export default DesktopNav;
+export default DesktopNavIndex;

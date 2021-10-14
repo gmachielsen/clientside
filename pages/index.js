@@ -6,7 +6,7 @@ import CourseCard from '../components/cards/CourseCard';
 import Footer from "../components/Footer";
 import Cover from '../components/cards/Cover';
 import TopNavIndex from "../components/TopNavIndex";
-import DesktopNav  from "../components/DesktopNav";
+import DesktopNavIndex  from "../components/DesktopNavIndex";
 import Media from 'react-media';
 import ScrollButton from '../components/ScrollButton'; 
 import DownCircleOutlined from "@ant-design/icons";
@@ -74,7 +74,7 @@ const Index = ({ courses }) => {
         <MediaQuery minWidth={1825}>
         <>
                  <div style={{ position: 'absolute', zIndex: 2, width: "100%"}}> 
-                    <DesktopNav />
+                    <DesktopNavIndex />
                   </div>    
                   <h1 className="text-center artmastersacademytitle" style={{ padding: 0, position: 'absolute', left: 0, right: 0, top: '30%', color: 'white', zIndex: 2, fontFamily: 'serif', fontSize: "150px" }}>
                         Art Masters Academy
@@ -120,7 +120,7 @@ const Index = ({ courses }) => {
         <div className="container-fluid">
             <div className="row">
                 {courses.map((course) => (
-                  <div key={course._id} className="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                  <div key={course._id} className="col-12 col-md-6 col-lg-6 col-xl-3">
                     <CourseCard course={course}/>
                   </div>))}
             </div>
