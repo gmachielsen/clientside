@@ -120,7 +120,7 @@ const Index = ({ courses }) => {
         <div className="container-fluid">
             <div className="row">
                 {courses.map((course) => (
-                  <div key={course._id} className="col-12 col-md-6 col-lg-6 col-xl-3">
+                  <div key={course._id} className="col-12 col-md-6 col-lg-6 col-xl-4">
                     <CourseCard course={course}/>
                   </div>))}
             </div>

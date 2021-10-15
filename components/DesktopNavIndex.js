@@ -64,7 +64,7 @@ const DesktopNavIndex = () => {
                         {user == null && (
                             <>
                                 <li class="navbar__list-item"><a style={{ padding: "15px", color: "white"}} href="/login" class="hover-target">Login</a></li>
-                                <li class="navbar__list-item"><a style={{ padding: "15px", color: "white"}} href="/register" class="hover-target">Register</a></li>
+                                <li class="navbar__list-item"><a style={{ padding: "15px", color: "white", marginRight: "40px" }} href="/register" class="hover-target">Register</a></li>
                             </>
                         )}
                         {user !== null && (
@@ -72,23 +72,19 @@ const DesktopNavIndex = () => {
                                 <div class="dropdown">
                                     <span style={{ color: "white" }}><UserOutlined style={{ marginRight: "10px", marginBottom: "10px" }}/> {user && user.name}</span>
                                     <div class="dropdown-content">
-                                        <Link href="/user">
+                                        <Link  href="/user">
                                                 <a>Dashboard</a>
-                                        </Link>                                    
+                                        </Link>
+                                        {user && user.role && user.role.includes("Instructor") && (
+                                        <>
+                                        <hr />
+                                            <Link href="/instructor">
+                                                <a>Instructor</a>
+                                            </Link></>  
+                                        ) }
+                                                            
                                     </div>
                                 </div>
-                            {/* <Menu>
-                                    <SubMenu icon={<UserAddOutlined />} title={user && user.name} className="float-right">
-                                        <ItemGroup>
-                                        <Item key="/user">
-                                            <Link href="/user">
-                                            <a>Dashboard</a>
-                                            </Link>
-                                        </Item>
-                                       
-                                        </ItemGroup>
-                                    </SubMenu>
-                            </Menu> */}
                                 <li class="navbar__list-item"><a href="" style={{ padding: "75px", color: "white"}} class="hover-target" onClick={logout}>Logout</a></li>
                             </>
                         )}

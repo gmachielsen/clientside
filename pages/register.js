@@ -54,10 +54,10 @@ const Register = () => {
 
   return (
     <>
-      <h1 className="jumbotron text-center bg-primary square">Register</h1>
+      <h1 className="text-center mt-6">Register</h1>
 
-      <div className="container col-md-4 offset-md-4 pb-5">
-        <form onSubmit={handleSubmit}>
+      <div className="container col-md-12 pb-5">
+        <form onSubmit={handleSubmit} className="col-8 offset-2">
           <input
             type="text"
             className="form-control mb-4 p-4"
