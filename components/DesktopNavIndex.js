@@ -82,6 +82,13 @@ const DesktopNavIndex = () => {
                                                 <a>Instructor</a>
                                             </Link></>  
                                         ) }
+                                        {user && user.role && user.role.includes("Admin") && (
+                                        <>
+                                        <hr />
+                                            <Link href="/admin">
+                                                <a>Admin</a>
+                                            </Link></>  
+                                        ) }
                                                             
                                     </div>
                                 </div>

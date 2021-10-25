@@ -9,6 +9,7 @@ import {
   UserAddOutlined,
   CarryOutOutlined,
   TeamOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 import { Context } from "../context";
 import axios from "axios";
@@ -38,14 +39,14 @@ const TopNav = () => {
   };
 
   return (
-    <Menu mode="horizontal" selectedKeys={[current]} className="mb-2">
+    <Menu mode="horizontal" selectedKeys={[current]} className="mb-2" style={{ border: "none", paddingTop: "10px"}}>
       <Item
         key="/"
         onClick={(e) => setCurrent(e.key)}
-        icon={<AppstoreOutlined />}
       >
         <Link href="/">
-          <a>App</a>
+                        <a style={{ fontSize: "10px", color: "black" }}href="/" class="hover-target"><span>ArtMasters</span>Academy</a>
+                       
         </Link>
       </Item>
 
@@ -53,7 +54,7 @@ const TopNav = () => {
                <Item
                key="/instructor/course/create"
                onClick={(e) => setCurrent(e.key)}
-               icon={<CarryOutOutlined />}
+              //  icon={<CarryOutOutlined />}
              >
                <Link href="/instructor/course/create">
                  <a>Create Course</a>
@@ -63,7 +64,7 @@ const TopNav = () => {
             <Item
               key="/user/become-instructor"
               onClick={(e) => setCurrent(e.key)}
-              icon={<TeamOutlined />}
+              // icon={<TeamOutlined />}
             >
               <Link href="/user/become-instructor">
                 <a>Become Instructor</a>
@@ -75,7 +76,7 @@ const TopNav = () => {
       <Item
         key="/instructor"
         onClick={(e) => setCurrent(e.key)}
-        icon={<TeamOutlined />}
+        // icon={<TeamOutlined />}
         className="float-right"
       >
         <Link href="/instructor">
@@ -109,7 +110,7 @@ const TopNav = () => {
      )}
 
       {user !== null && (
-        <SubMenu icon={<CoffeeOutlined />} title={user && user.name} className="float-right">
+        <SubMenu icon={<UserOutlined />} title={user && user.name} className="float-right">
             <ItemGroup>
               <Item key="/user">
                 <Link href="/user">

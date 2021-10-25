@@ -50,7 +50,7 @@ function MyApp({ Component, pageProps }) {
 
       </MediaQuery>
       <MediaQuery minWidth={1224}>
-        <NavDesktop />
+        <TopNav />
       </MediaQuery>
 
         <Component {...pageProps} />
@@ -66,7 +66,7 @@ function MyApp({ Component, pageProps }) {
 
       </MediaQuery>
       <MediaQuery minWidth={1224}>
-        <NavDesktop />
+        <TopNav />
       </MediaQuery>
       <Component {...pageProps} />
     <Footer />
