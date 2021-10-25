@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { toast } from "react-toastify";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-// import CategoryForm from "../../../components/forms/CategoryForm";
 import LocalSearch from "../forms/LocalSearch";
 import axios from "axios";
 import Link from "next/link";
