@@ -111,7 +111,7 @@ const Index = ({ courses }) => {
           <div className="row">
             <div className="col-12 text-center">
               <h1  ref={divRef} id="courses" style={{ fontFamily: 'serif', fontWeight: 'bold', color: 'brown' }}>
-                Our Courses
+                Online Courses
               </h1>
             </div>
           </div>

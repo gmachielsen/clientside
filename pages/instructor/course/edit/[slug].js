@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import InstructorRoute from "../../../../components/routes/InstructorRoute";
-import CourseCreateForm from "../forms/CourseCreateForm";
+import CourseEditForm from "../forms/CourseCreateForm";
 import Resizer from "react-image-file-resizer";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
-import {List, Avatar, Modal, Button, Badge, Switch, Progress } from 'antd';
+import {List, Avatar, Modal } from 'antd';
 import { DeleteOutlined } from "@ant-design/icons";
 import UpdateLessonForm from "../forms/UpdateLessonForm";
-import ReactPlayer from 'react-player';
-
 
 const { Item } = List;
 
@@ -22,24 +20,32 @@ const CourseEdit = () => {
     uploading: false,
     paid: true,
     category: "",
+    subcategories: [],
     loading: false,
     lessons: [],
   });
   const [image, setImage] = useState({});
+  // const [lessonImage, setLessonImage] = useState({});
   const [preview, setPreview] = useState("");
-  const [uploadButtonText, setUploadButtonText] = useState("Upload Image");
   const [imageLessonPreview, setImageLessonPreview] = useState("");
-
+  const [uploadButtonText, setUploadButtonText] = useState("Upload Image");
+  const [uploadImageButtonText, setuploadImageButtonText] = useState("Upload lesson image");
   // state for lessons update
   const [visible, setVisible] = useState(false);
   const [current, setCurrent] = useState({});
+  // const [secondCurrent, setSecondCurrent] = useState({});
   const [uploadVideoButtonText, setUploadVideoButtonText] = useState(
     "Upload Video"
   );
+  // const [uploadLessonImageButtonText, setUploadLessonImageButtonText] = useState("Upload image");
   const [progress, setProgress] = useState(0);
   const [uploading, setUploading] = useState(false);
-  const [uploadImageButtonText, setuploadImageButtonText] = useState("Upload lesson image");
 
+  const [categories, setCategories] = useState([]);
+  const [showSubCategories, setShowSubCategories] = useState(false);
+  const [subOptions, setSubOptions] = useState([]);
+  const [arrayOfSubs, setArrayOfSubs] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
 
   // router
@@ -48,16 +54,79 @@ const CourseEdit = () => {
 
   useEffect(() => {
     loadCourse();
+    loadCategories();
   }, [slug]);
 
+  const loadCategories = async () => {
+    await axios.get("/api/admin/categories")
+    .then((c) => setCategories(c.data));
+   }
 
+   const getCategorySubcategories = async (id) => {
+    await axios.get(`/api/category/subcategories/${id}`).then((data) => {
+      setSubOptions(data.data);
+      console.log(data.data, "datadadsada", subOptions);
+      console.log(subOptions, "suboptions")
+    });
+    // console.log(iets, "iets")
+  }
 
   const loadCourse = async () => {
-    const { data } = await axios.get(`/api/course/${slug}`);
-    console.log(data);
-    if (data) setValues(data);
-    if (data && data.image) setImage(data.image);
+     await axios.get(`/api/course/${slug}`)
+    .then((p) => {
+      setValues({ ...values, ...p.data });
+      // console.log({...p.data.category}),
+
+
+
+    }
+    
+      // console.log(values.name, "values", values.category, "categiry",p.data, "pdatada")
+      // console.log(p.data.category, "category");
+      // getCategorySubcategories(values.category)
+
+      // let arr = [];
+      // p.data.subcategories.map((s) => {
+      //   arr.push(s._id);
+      // });
+      // console.log("ARR", arr);
+      // setArrayOfSubs((prev) => arr); // required for ant design select to work
+    
+    )
+
+    // const id = values.category;
+    // await getCategorySubcategories(values.category);
+
+    // let arr = [];
+    // values.subcategories.map((s) => {
+    //   arr.push(s._id);
+    // })
+    // console.log(values.category, "categro")
+
+    // if (data) setValues(data);
+    // if (data && data.image) setImage(data.image);
   };
+
+
+
+  // const loadProduct = () => {
+  //   getProduct(slug).then((p) => {
+  //     // console.log("single product", p);
+  //     // 1 load single proudct
+  //     setValues({ ...values, ...p.data });
+  //     // 2 load single product category subs
+  //     getCategorySubs(p.data.category._id).then((res) => {
+  //       setSubOptions(res.data); // on first load, show default subs
+  //     });
+  //     // 3 prepare array of sub ids to show as default sub values in antd Select
+  //     let arr = [];
+  //     p.data.subs.map((s) => {
+  //       arr.push(s._id);
+  //     });
+  //     console.log("ARR", arr);
+  //     setArrayOfSubs((prev) => arr); // required for ant design select to work
+  //   });
+  // };
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -85,23 +154,6 @@ const CourseEdit = () => {
       }
     });
   };
-
-  const handleImageRemove = async () => {
-    try {
-      // console.log(values);
-      setValues({ ...values, loading: true });
-      const res = await axios.post("/api/course/remove-image", { image });
-      setImage({});
-      setPreview("");
-      setUploadButtonText("Upload Image");
-      setValues({ ...values, loading: false });
-    } catch (err) {
-      console.log(err);
-      setValues({ ...values, loading: false });
-      toast("Image upload failed. Try later.");
-    }
-  };
-
 
   const handleLessonImage = (e) => {
     let file = e.target.files[0];
@@ -131,6 +183,60 @@ const CourseEdit = () => {
   };
 
 
+  const handleCategoryChange = (e) => {
+    e.preventDefault()
+    console.log('CLICKED CATEGORY', e.target.value);
+    setValues({ ...values, subcategories: [], category: e.target.value });
+    axios.get(`/api/category/subcategories/${e.target.value}`)
+      .then((res) => {
+        setSubOptions(res.data);
+      });
+    setShowSubCategories(true);
+};
+
+  // const handleLessonImage = (e) => {
+  //   let file = e.target.files[0];
+  //   setImageLessonPreview(window.URL.createObjectURL(file));
+  //   setUploadVideoButtonText(file.name);
+  //   setValues({ ...values, loading: true });
+  //   // resize
+  //   Resizer.imageFileResizer(file, 720, 500, "JPEG", 100, 0, async (uri) => {
+  //     try {
+  //       let { data } = await axios.post("/api/course/lesson/upload-image", {
+  //         image: uri,
+  //       });
+  //       console.log("Image Lesson Uploaded", data);
+  //       // set lesson image in te state 
+  //       setLessonImage(data);
+  //       setValues({ ...values, loading: false });
+  //     } catch (err) {
+  //       console.log(err);
+  //       setValues({ ...values, loading: false });
+  //       toast("LessonImage upload failed, Try later.");
+  //     }
+  //   });
+  // };
+
+
+
+  
+  const handleImageRemove = async () => {
+    try {
+      // console.log(values);
+      setValues({ ...values, loading: true });
+      const res = await axios.post("/api/course/remove-image", { image });
+      setImage({});
+      setPreview("");
+      setUploadButtonText("Upload Image");
+      setValues({ ...values, loading: false });
+    } catch (err) {
+      console.log(err);
+      setValues({ ...values, loading: false });
+      toast("Image remove failed. Try later.");
+    }
+  };
+
+
   const handleLessonImageRemove = async () => {
     try {
       const res = await axios.post("/api/course/lessonremove-image",  current.lessonimage);
@@ -146,18 +252,35 @@ const CourseEdit = () => {
     }
   }
 
+  // const handleLessonImageRemove = async () => {
+  //   try {
+  //     // console.log(values);
+  //     setValues({ ...values, loading: true });
+  //     const res = await axios.post("/api/course/lesson/remove-image", { lessonImage });
+  //     setLessonImage({});
+  //     setLessonPreview("");
+  //     setUploadLessonImageButtonText("Upload Image");
+  //     setValues({ ...values, loading: false });
+  //   } catch (err) {
+  //     console.log(err);
+  //     setValues({ ...values, loading: false });
+  //     toast("Lesson Image removed failed. Try later.");
+  //   }
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setVisible(false);
+      values.subs = arrayOfSubs;
+      values.category = selectedCategory ? selectedCategory : values.category;
+    // values.subcategories = arrayOfSubs;
+    // values.category = selectedCategory ? selectedCategory : values.category;
       // console.log(values);
-      const { data } = await axios.put(`/api/course/${slug}`, {
+      const { data } = await axios.put(`/api/course/update/${slug}`, {
         ...values,
         image,
       });
       toast("Course updated!");
-      setVisible(true);
       // router.push("/instructor");
     } catch (err) {
       toast(err.response.data);
@@ -198,7 +321,6 @@ const CourseEdit = () => {
     // console.log("removed", removed[0]._id);
     setValues({ ...values, lessons: allLessons });
     // send request to server
-    console.log(removed[0]._id, "removed", slug, "slug");
     const { data } = await axios.put(`/api/course/${slug}/${removed[0]._id}`);
     console.log("LESSON DELETED =>", data);
   };
@@ -237,116 +359,33 @@ const CourseEdit = () => {
     setUploading(false);
   };
 
+  
+
   const handleUpdateLesson = async (e) => {
     // console.log("handle update lesson");
     e.preventDefault();
-    setUploading(true);
-    setVisible(false);
     const { data } = await axios.put(
       `/api/course/lesson/${slug}/${current._id}`,
       current
     );
     setUploadVideoButtonText("Upload Video")
-    
+    setVisible(false)
     // update ui 
     if(data.ok) {
       let arr = values.lessons;
       const index = arr.findIndex((el) => el._id === current._id);
       arr[index] = current;
-      setValues({ ...values, lessons: arr });
-      setVisible(true);
-      setUploading(false);
+      setValues({ ...values, lessons: arr, loading: false });
       toast('Lesson updated');
     }
   };
-
-  const updateLessonForm = () => (
-    <div className="container pt-3">
-    {/* {JSON.stringify(current)} */}
-    <form onSubmit={handleUpdateLesson}>
-      <input
-        type="text"
-        className="form-control square"
-        onChange={(e) => setCurrent({ ...current, title: e.target.value })}
-        value={current.title}
-        autoFocus
-        required
-      />
-
-      <textarea
-        className="form-control mt-3"
-        cols="7"
-        rows="7"
-        onChange={(e) => setCurrent({ ...current, content: e.target.value })}
-        value={current.content}
-      ></textarea>
-
-      <div>
-        {!uploading && current.video && current.video.Location && (
-          <div className="pt-2 d-flex justify-content-center">
-            <ReactPlayer
-              url={current.video.Location}
-              width="410px"
-              height="240px"
-              controls
-            />
-          </div>
-        )}
-          <label className="btn btn-dark btn-block text-left mt-3">
-            {uploadVideoButtonText}
-            <input onChange={handleVideo} type="file" accept="video/*" hidden />
-        </label>
-      </div>
-
-      {progress > 0 && (
-        <Progress
-          className="d-flex justify-content-center pt-2"
-          percent={progress}
-          steps={10}
-        />
-      )}
-      <div className="d-flex justify-content-between">
-        <span className="pt-3 badge"><p>Preview</p></span>
-        <p>Preview</p>
-        <Switch 
-          className="float-right mt-2" 
-          disabled={uploading} 
-          checked={current.free_preview}
-          name="fee_preview"
-          onChange={(v) => setCurrent({ ...current, free_preview: v })} 
-        />
-      </div>
-      <div className="d-flex justify-content-center">
-                  <label className="btn btn-dark btn-block text-left mt-3">
-                      {uploadImageButtonText}
-                      <input type="file" name="lessonimage" onChange={handleLessonImage} accept="image/*" hidden/>
-                  </label>
-                  {imageLessonPreview && visible && (
-                      <Badge count="X" onClick={handleLessonImageRemove} className="pointer">
-                          <Avatar width={200} src={imageLessonPreview} />
-                      </Badge>
-                  )}
-              </div>
-      <Button
-        onClick={handleUpdateLesson}
-        className="col mt-3"
-        size="large"
-        type="primary"
-        loading={uploading}
-        shape="round"
-      >
-        Save
-      </Button>
-    </form>
-  </div>
-  )
 
   return (
     <InstructorRoute>
       <h1 className="jumbotron text-center square">Update Course</h1>
       {/* {JSON.stringify(values)} */}
       <div className="pt-3 pb-3">
-        <CourseCreateForm
+        <CourseEditForm
           handleSubmit={handleSubmit}
           handleImageRemove={handleImageRemove}
           handleImage={handleImage}
@@ -356,6 +395,17 @@ const CourseEdit = () => {
           preview={preview}
           uploadButtonText={uploadButtonText}
           editPage={true}
+          
+          handleCategoryChange={handleCategoryChange}
+
+          categories={categories}
+          showSubCategories={showSubCategories}
+          subOptions={subOptions}
+
+          arrayOfSubs={arrayOfSubs}
+          setArrayOfSubs={setArrayOfSubs}
+          selectedCategory={selectedCategory}
+
         />
       </div>
       {/* <pre>{JSON.stringify(values, null, 4)}</pre>
@@ -403,17 +453,20 @@ const CourseEdit = () => {
         onCancel={() => setVisible(false)}
         footer={null}
       >
-        {/* <UpdateLessonForm
+        <UpdateLessonForm
           current={current}
           setCurrent={setCurrent}
           handleVideo={handleVideo}
           handleUpdateLesson={handleUpdateLesson}
           uploadVideoButtonText={uploadVideoButtonText}
+          handleLessonImage={handleLessonImage}
+          uploadImageButtonText={uploadImageButtonText}
+          handleLessonImageRemove={handleLessonImageRemove}
+          imageLessonPreview={imageLessonPreview}
           progress={progress}
           uploading={uploading}
-        /> */}
-                {updateLessonForm()}
-
+          visible={visible}
+        />
         {/* <pre>{JSON.stringify(current, null, 4)}</pre> */}
       </Modal>
     </InstructorRoute>
