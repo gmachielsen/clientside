@@ -107,6 +107,24 @@ const Index = ({ courses }) => {
         </div>
   
         <br/><br/>
+        <br/><br/>
+
+        <div  className="container-fluid">
+          <div className="row">
+            <div className="col-12 text-center">
+              <h1  ref={divRef} id="courses" style={{ fontFamily: 'serif', fontWeight: 'bold', color: 'brown', fontSize: "50px" }}>
+                Achieve mastery by practice
+              </h1>
+              <p style={{ fontFamily: 'serif', fontSize: "20px" }}>
+                improve your painting skills by online courses from different topics such as still life, figure, portrait, landscape and animals.
+              </p>
+            </div>
+          </div>
+        </div>
+        <br/><br/>
+        <br/><br/>
+        <br/><br/>
+
         <div  className="container-fluid">
           <div className="row">
             <div className="col-12 text-center">

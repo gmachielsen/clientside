@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import CourseCard from '../components/cards/CourseCard';
 
 import { Menu, Slider, Checkbox } from "antd";
 import { DollarOutlined, DownSquareOutlined } from "@ant-design/icons";
@@ -143,12 +144,12 @@ const Courses = () => {
               key="3"
               title={
                 <span className="h6">
-                  <DownSquareOutlined /> Categories
+                   Categories
                 </span>
               }
             >
-              <div style={{ maringTop: "-10px" }}>{showCategories()}</div>
             </SubMenu>
+            <div style={{ maringTop: "-10px" }}>{showCategories()}</div>
 
  
           </Menu>
@@ -166,7 +167,7 @@ const Courses = () => {
             <div className="col-sm-12 col-md-12 col-lg-8 col-xl-9 pt-2">
                 {courses.map((course) => (
                 <div key={course._id} className="col-sm-12 col-md-12 col-lg-12 col-xl-4">
-                    {/* <CourseCard course={course}/> */}
+                    <CourseCard course={course}/>
                 </div>))}
             </div>
         </div>
