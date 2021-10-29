@@ -115,6 +115,7 @@ const Index = ({ courses }) => {
               <h1  ref={divRef} id="courses" style={{ fontFamily: 'serif', fontWeight: 'bold', color: 'brown', fontSize: "50px" }}>
                 Achieve mastery by practice
               </h1>
+              <br/>
               <p style={{ fontFamily: 'serif', fontSize: "20px" }}>
                 improve your painting skills by online courses from different topics such as still life, figure, portrait, landscape and animals.
               </p>
