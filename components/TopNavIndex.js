@@ -4,13 +4,7 @@ import Link from "next/link";
 
 
 import {
-  AppstoreOutlined,
-  CoffeeOutlined,
-  LoginOutlined,
-  LogoutOutlined,
-  UserAddOutlined,
-  CarryOutOutlined,
-  TeamOutlined,
+UserOutlined
 } from "@ant-design/icons";
 import { Context } from "../context";
 import axios from "axios";
@@ -90,6 +84,28 @@ const TopNavIndex = () => {
                 <li class="nav__list-item"><a href="/register" class="hover-target">Register</a></li>
               </>
             )}
+            {user !== null && (
+                            <>
+                                <div class="dropdown">
+                                    <span style={{ color: "white" }}><UserOutlined style={{ marginRight: "10px", marginBottom: "10px" }}/> {user && user.name}</span>
+                                      <li class="nav__list-item"><a href="/user" class="hover-target">Dashboard</a></li>
+
+                                     
+                                        {user && user.role && user.role.includes("Instructor") && (
+                                        <>
+                                            <li class="nav__list-item"><a href="/instructor" class="hover-target">Instructor</a></li>
+                                            </>  
+                                        ) }
+                                        {user && user.role && user.role.includes("Admin") && (
+                                        <>
+                                          <li class="nav__list-item"><a href="/admin" class="hover-target">Admin</a></li>
+                                        </>  
+                                        ) }
+                                                            
+                                </div>
+                                {/* <li class="navbar__list-item"><a href="" style={{ padding: "75px", color: "white"}} class="hover-target" onClick={logout}>Logout</a></li> */}
+                            </>
+                        )}
             <br />
             <br />
             <li class="nav__list-item"><a href="" class="hover-target">Online Courses</a></li>
@@ -101,6 +117,7 @@ const TopNavIndex = () => {
                 <li class="nav__list-item"><a href="" class="hover-target" onClick={logout}>Logout</a></li>
               </>
             )}
+
           </ul>
         </div>
       </div>

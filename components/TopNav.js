@@ -71,6 +71,19 @@ const TopNav = () => {
               </Link>
             </Item>
         )}
+        
+        {user && user.role && user.role.includes("Admin") && (
+          <Item
+          key="/admin"
+               onClick={(e) => setCurrent(e.key)}
+          >
+              <Link href="/admin">
+                 <a>Admin</a>
+               </Link>
+          
+          </Item>
+        )}
+        
     
     { user && user.role && user.role.includes("Instructor") && (
       <Item
