@@ -35,29 +35,39 @@ const Courses = () => {
 
   const loadCategories = async () => {
     const { data } = await axios.get("/api/categories")
+
     setCategories(data);
     console.log(data, "categpries");
     console.log(categories, "ccategproes")
 
   }
 
-  const fetchCourses = (arg) => {
+  const fetchCourses = async (arg) => {
     console.log(arg, "<<------ arguments");
-    fetchCoursesByFilter(arg)
-    //  axios.post("/api/search/courses", arg)
-    .then((res) => {
-      setCourses(res.data);
-      console.log(res.data, "resdatadada");
+    await axios.post("/api/search/courses", arg)
+    .then((c) => {
+      console.log(c.data, "cccccc");
+      setCourses(c.data)
     });
+    // setCourses(filterresults);
+    // console.log(filterresults, "filteresults???")
+    // setCourses(filterresults);
+    // .then((c) => {
+    //   console.log(c, "cccccc");
+    //   setCourses(c)
+    // });
+    //  axios.post("/api/search/courses", arg)
+      // console.log(c.data, "resdatadada");
+  
     console.log(courses, "courses")
     console.log(courses.name, "course imagegememgegmge");
     // console.log(courses.data.image.Location, "course image location,,,,,,");
   };
 
 
-  const fetchCoursesByFilter = async (arg) => {
-         axios.post("/api/search/courses", arg)
-  }
+  // const fetchCoursesByFilter = async (arg) => {
+  //        axios.post("/api/search/courses", arg)
+  // }
 
   // useEffect(() => {
   //   fetchCourses({ categoryIds });
@@ -68,48 +78,44 @@ const Courses = () => {
   // 4. load products based on category
   // show categories in a list of checkbox
   const showCategories = () =>
-    categories.map((c) => (
-      <div key={c._id}>
-        <Checkbox
-          onChange={handleCheck}
-          className="pb-2 pl-4 pr-4"
-          value={c._id}
-          name="category"
-          checked={categoryIds.includes(c._id)}
-        >
-          {c.name}
-        </Checkbox>
-        <br />
-      </div>
-    ));
+  categories.map((c) => (
+    <div key={c._id}>
+      <Checkbox
+        onChange={handleCheck}
+        className="pb-2 pl-4 pr-4"
+        value={c._id}
+        name="category"
+        checked={categoryIds.includes(c._id)}
+      >
+        {c.name}
+      </Checkbox>
+      <br />
+    </div>
+  ));
 
-  // handle check for categories
-  const handleCheck = (e) => {
-  
- 
+// handle check for categories
+const handleCheck = (e) => {
 
-    // console.log(e.target.value);
-    let inTheState = [...categoryIds];
-    let justChecked = e.target.value;
-    let foundInTheState = inTheState.indexOf(justChecked); // index or -1
 
-    // indexOf method ?? if not found returns -1 else return index [1,2,3,4,5]
-    if (foundInTheState === -1) {
-      inTheState.push(justChecked);
-    } else {
-      // if found pull out one item from index
-      inTheState.splice(foundInTheState, 1);
-    }
+  // console.log(e.target.value);
+  let inTheState = [...categoryIds];
+  let justChecked = e.target.value;
+  let foundInTheState = inTheState.indexOf(justChecked); // index or -1
 
-    setCategoryIds(inTheState);
-    // setCategoryIds(categoryIds);
- 
-    // console.log(inTheState, "is piethe, daar");
-    // fetchProducts({ category: inTheState, shipping, price });
-    fetchCourses({ categoryIds: inTheState,  });
+  // indexOf method ?? if not found returns -1 else return index [1,2,3,4,5]
+  if (foundInTheState === -1) {
+    inTheState.push(justChecked);
+  } else {
+    // if found pull out one item from index
+    inTheState.splice(foundInTheState, 1);
+  }
 
-  };
+  setCategoryIds(inTheState);
+  // setCategoryIds(categoryIds);
 
+  fetchCourses({ categoryIds: inTheState }, {published: true});
+
+};
 
 
 
@@ -118,26 +124,24 @@ const Courses = () => {
   return (
     <div className="container-fluid" style={{padding: "0"}}>
       <div className="row" style={{padding: "15px"}}>
-        <div className="col-md-3 pt-2">
-          <h4 className="text-center" >Filter</h4>
+      <div className="col-md-3 pt-2">
+          <h4 className="text-center" >Zoekfilter</h4>
           <hr />
 
           <Menu defaultOpenKeys={["1", "2"]} mode="inline">
-  
- 
 
             <SubMenu
               key="3"
               title={
                 <span className="h6">
-                   Categories
+                  Categories
                 </span>
               }
             >
+              <div style={{ maringTop: "-10px" }}>{showCategories()}</div>
             </SubMenu>
-            <div style={{ maringTop: "-10px" }}>{showCategories()}</div>
 
- 
+  
           </Menu>
         </div>
 
@@ -150,9 +154,9 @@ const Courses = () => {
 
           {courses.length < 1 && <p>No courses found</p>}
 
-            <div className="col-sm-12 col-md-12 col-lg-8 col-xl-9 pt-2">
+            <div className="row">
                 {courses.map((course) => (
-                <div key={course._id} className="col-sm-12 col-md-12 col-lg-12 col-xl-4">
+                <div key={course._id} className="col-sm-12 col-md-6 col-lg-4 col-xl-4">
                     <CourseCard course={course}/>
                 </div>))}
             </div>
