@@ -14,7 +14,6 @@ const Courses = () => {
   const [ok, setOk] = useState(false);
   const [categories, setCategories] = useState([]);
   const [categoryIds, setCategoryIds] = useState([]);
-  const [shipping, setShipping] = useState("");
 
   
   
@@ -35,14 +34,17 @@ const Courses = () => {
   };
 
   const loadCategories = async () => {
-    await axios.get("/api/admin/categories")
-   .then((c) => setCategories(c.data));
+    const { data } = await axios.get("/api/categories")
+    setCategories(data);
+    console.log(data, "categpries");
+    console.log(categories, "ccategproes")
+
   }
 
-  const fetchCourses = async (arg) => {
+  const fetchCourses = (arg) => {
     console.log(arg, "<<------ arguments");
-    setCourses([]);
-    await axios.post("/api/search/courses", arg)
+    fetchCoursesByFilter(arg)
+    //  axios.post("/api/search/courses", arg)
     .then((res) => {
       setCourses(res.data);
       console.log(res.data, "resdatadada");
@@ -52,30 +54,14 @@ const Courses = () => {
     // console.log(courses.data.image.Location, "course image location,,,,,,");
   };
 
-  // 1. load products by default on page load
-//   const loadAllProducts = () => {
-//     getProductsByCount(12).then((p) => {
-//       setProducts(p.data);
-//       setLoading(false);
-//     });
-//   };
 
-  // 2. load products on user search input
-//   useEffect(() => {
-//     const delayed = setTimeout(() => {
-//       fetchProducts({ query: text });
-//       if (!text) {
-//         loadCourses();
-//       }
-//     }, 300);
-//     return () => clearTimeout(delayed);
-//   }, [text]);
+  const fetchCoursesByFilter = async (arg) => {
+         axios.post("/api/search/courses", arg)
+  }
 
-  // 3. load products based on price range
-  useEffect(() => {
-    // console.log("ok to request", price);
-    fetchCourses({ categoryIds });
-  }, [ok]);
+  // useEffect(() => {
+  //   fetchCourses({ categoryIds });
+  // });
 
  
 
