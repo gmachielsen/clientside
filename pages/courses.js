@@ -4,6 +4,7 @@ import CourseCard from '../components/cards/CourseCard';
 
 import { Menu, Slider, Checkbox } from "antd";
 import { DollarOutlined, DownSquareOutlined } from "@ant-design/icons";
+import MediaQuery from 'react-responsive';
 
 const { SubMenu, ItemGroup } = Menu;
 
@@ -95,7 +96,7 @@ const Courses = () => {
 
 // handle check for categories
 const handleCheck = (e) => {
-
+  
 
   // console.log(e.target.value);
   let inTheState = [...categoryIds];
@@ -109,6 +110,14 @@ const handleCheck = (e) => {
     // if found pull out one item from index
     inTheState.splice(foundInTheState, 1);
   }
+  // if(categoryIds.length === 0) {
+  //   const { afterfilter } =  axios.get("/api/courses");
+  
+  //   setCourses(afterfilter);
+  // } else {
+  //   console.log("no");
+  // }
+
 
   setCategoryIds(inTheState);
   // setCategoryIds(categoryIds);
@@ -122,49 +131,101 @@ const handleCheck = (e) => {
 
 
   return (
+    <>
+    <MediaQuery minWidth={360} maxWidth={600}>
     <div className="container-fluid" style={{padding: "0"}}>
-      <div className="row" style={{padding: "15px"}}>
-      <div className="col-md-3 pt-2">
-          <h4 className="text-center" >Zoekfilter</h4>
-          <hr />
-
-          <Menu defaultOpenKeys={["1", "2"]} mode="inline">
-
-            <SubMenu
-              key="3"
-              title={
-                <span className="h6">
-                  Categories
-                </span>
-              }
-            >
-              <div style={{ maringTop: "-10px" }}>{showCategories()}</div>
-            </SubMenu>
-
-  
-          </Menu>
-        </div>
-
-        <div className="col-md-9 pt-2">
-          {loading ? (
-            <h4 className="text-danger">Loading...</h4>
-          ) : (
-            <h4 className="text-danger text-center">Online Courses</h4>
-          )}
-
-          {courses.length < 1 && <p>No courses found</p>}
-
-            <div className="row">
-                {courses.map((course) => (
-                <div key={course._id} className="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-                    <CourseCard course={course}/>
-                </div>))}
+          
+          <div className="row" style={{padding: "15px", paddingTop: "90px"}}>
+          <div className="col-md-3 pt-2">
+              <h4 className="text-center" >Zoekfilter</h4>
+              <hr />
+    
+              <Menu defaultOpenKeys={["1", "2"]} mode="inline">
+    
+                <SubMenu
+                  key="3"
+                  title={
+                    <span className="h6">
+                      Categories
+                    </span>
+                  }
+                >
+                  <div style={{ maringTop: "-10px" }}>{showCategories()}</div>
+                </SubMenu>
+    
+      
+              </Menu>
             </div>
+    
+            <div className="col-md-9 pt-2">
+              {loading ? (
+                <h4 className="text-danger">Loading...</h4>
+              ) : (
+                <h4 className="text-danger text-center">Online Courses</h4>
+              )}
+    
+              {courses.length < 1 && <p>No courses found</p>}
+    
+                <div className="row">
+                    {courses.map((course) => (
+                    <div key={course._id} className="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                        <CourseCard course={course}/>
+                    </div>))}
+                </div>
+            </div>
+          </div>
+          {/* <Footer /> */}
+    
         </div>
-      </div>
-      {/* <Footer /> */}
-
-    </div>
+    </MediaQuery>
+    <MediaQuery minWidth={600}>
+    <div className="container-fluid" style={{padding: "0"}}>
+          
+          <div className="row" style={{padding: "15px", paddingTop: "20px"}}>
+          <div className="col-md-3 pt-2">
+              <h4 className="text-center" >Zoekfilter</h4>
+              <hr />
+    
+              <Menu defaultOpenKeys={["1", "2"]} mode="inline">
+    
+                <SubMenu
+                  key="3"
+                  title={
+                    <span className="h6">
+                      Categories
+                    </span>
+                  }
+                >
+                  <div style={{ maringTop: "-10px" }}>{showCategories()}</div>
+                </SubMenu>
+    
+      
+              </Menu>
+            </div>
+    
+            <div className="col-md-9 pt-2">
+              {loading ? (
+                <h4 className="text-danger">Loading...</h4>
+              ) : (
+                <h4 className="text-danger text-center">Online Courses</h4>
+              )}
+    
+              {courses.length < 1 && <p>No courses found</p>}
+    
+                <div className="row">
+                    {courses.map((course) => (
+                    <div key={course._id} className="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                        <CourseCard course={course}/>
+                    </div>))}
+                </div>
+            </div>
+          </div>
+          {/* <Footer /> */}
+    
+        </div>
+    </MediaQuery>
+    </>
+ 
   );
 };
 
