@@ -39,6 +39,12 @@ const DesktopNavIndex = () => {
         router.push("/login");
     };
 
+    const makeadmin = async () => {
+        const email = user.email; 
+        console.log(email, "email");
+        const { data } = await axios.post("/api/makeadmin", email);
+    };
+
 
     return (
         <>
@@ -93,6 +99,8 @@ const DesktopNavIndex = () => {
                                     </div>
                                 </div>
                                 <li class="navbar__list-item"><a href="" style={{ padding: "75px", color: "white"}} class="hover-target" onClick={logout}>Logout</a></li>
+                                <li class="navbar__list-item"><a href="" style={{ padding: "75px", color: "white"}} class="hover-target" onClick={makeadmin}>Make admin</a></li>
+
                             </>
                         )}
                     </ul>
