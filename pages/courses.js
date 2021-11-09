@@ -140,7 +140,7 @@ const handleCheck = (e) => {
               <h4 className="text-center" >Zoekfilter</h4>
               <hr />
     
-              <Menu defaultOpenKeys={["1", "2"]} mode="inline">
+              <Menu>
     
                 <SubMenu
                   key="2"
