@@ -78,21 +78,21 @@ const Courses = () => {
 
   // 4. load products based on category
   // show categories in a list of checkbox
-  const showCategories = () =>
-  categories.map((c) => (
-    <div key={c._id}>
-      <Checkbox
-        onChange={handleCheck}
-        className="pb-2 pl-4 pr-4"
-        value={c._id}
-        name="category"
-        checked={categoryIds.includes(c._id)}
-      >
-        {c.name}
-      </Checkbox>
-      <br />
-    </div>
-  ));
+  // const showCategories = () => (
+  // categories.map((c) => (
+  //   <div key={c._id}>
+  //     <Checkbox
+  //       onChange={handleCheck}
+  //       className="pb-2 pl-4 pr-4"
+  //       value={c._id}
+  //       name="category"
+  //       checked={categoryIds.includes(c._id)}
+  //     >
+  //       {c.name}
+  //     </Checkbox>
+  //     <br />
+  //   </div>
+  // )));
 
 // handle check for categories
 const handleCheck = (e) => {
@@ -143,14 +143,32 @@ const handleCheck = (e) => {
               <Menu defaultOpenKeys={["1", "2"]} mode="inline">
     
                 <SubMenu
-                  key="3"
+                  key="2"
                   title={
                     <span className="h6">
                       Categories
                     </span>
                   }
                 >
-                  <div style={{ maringTop: "-10px" }}>{showCategories()}</div>
+                  <div style={{ maringTop: "-10px" }}>
+                    {/* {showCategories()} */}
+                    <>
+                    {categories.map((c) => (
+                      <div key={c._id}>
+                        <Checkbox
+                          onChange={handleCheck}
+                          className="pb-2 pl-4 pr-4"
+                          value={c._id}
+                          name="category"
+                          checked={categoryIds.includes(c._id)}
+                        >
+                          {c.name}
+                        </Checkbox>
+                        <br />
+                      </div>
+                    ))}
+                    </>
+                  </div>
                 </SubMenu>
     
       
@@ -186,17 +204,31 @@ const handleCheck = (e) => {
               <h4 className="text-center" >Zoekfilter</h4>
               <hr />
     
-              <Menu defaultOpenKeys={["1", "2"]} mode="inline">
-    
+              <Menu>
+              {/* defaultOpenKeys={["1", "2"]} mode="inline" */}
                 <SubMenu
-                  key="3"
+                  key=""
                   title={
                     <span className="h6">
                       Categories
                     </span>
                   }
                 >
-                  <div style={{ maringTop: "-10px" }}>{showCategories()}</div>
+                  {/* <div style={{ maringTop: "-10px" }}>{showCategories()}</div> */}
+                  {categories.map((c) => (
+                      <div key={c._id}>
+                        <Checkbox
+                          onChange={handleCheck}
+                          className="pb-2 pl-4 pr-4"
+                          value={c._id}
+                          name="category"
+                          checked={categoryIds.includes(c._id)}
+                        >
+                          {c.name}
+                        </Checkbox>
+                        <br />
+                      </div>
+                    ))}
                 </SubMenu>
     
       
