@@ -61,7 +61,7 @@ const DesktopNavIndex = () => {
                 <div className="navbar_content" style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-end", width: "100%" }}>
  
                     <ul className="navbar_list center" style={{ justifyContent: "center", width: "calc(100% / 3)", padding: 0, margin: 0, display: "flex", flexDirection: "row", paddingTop: "40px", fontSize: "20px", color: "white", textDecoration: "none", listStyleType: "none", letterSpacing: "2px" }}>
-                        <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "white"}}>Online Courses</a></li>
+                        <li class="navbar__list-item"><a href="/courses" class="hover-target" style={{ padding: "15px", color: "white"}}>Online Courses</a></li>
                         <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "white"}}>Offline Courses</a></li>
                         <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "white"}}>Live Sessions</a></li>
                         <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "white"}}>About</a></li>

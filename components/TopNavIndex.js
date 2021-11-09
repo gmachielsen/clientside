@@ -108,7 +108,7 @@ const TopNavIndex = () => {
                         )}
             <br />
             <br />
-            <li class="nav__list-item"><a href="" class="hover-target">Online Courses</a></li>
+            <li class="nav__list-item"><a href="/courses" class="hover-target">Online Courses</a></li>
             <li class="nav__list-item"><a href="" class="hover-target">Offline Courses</a></li>
             <li class="nav__list-item"><a href="" class="hover-target">Live Sessions</a></li>
             <li class="nav__list-item"><a href="" class="hover-target">About</a></li>
