@@ -45,32 +45,32 @@ const NavDesktop = () => {
         <div>
             <header class="cd-header">
                 <div class="header-wrapper">
-                    <div class="logo-wrap">
-                        <a style={{ fontSize: "10px", color: "black" }}href="/" class="hover-target"><span>ArtMasters</span>Academy</a>
-                       
-                    </div>
+    
                 </div>
             </header>
-            <div className="navbar" style={{  }}>
+            <div className="navbar" style={{ padding: 12 }}>
+        
                 <div className="navbar_content" style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-end", width: "100%" }}>
- 
-                    <ul className="navbar_list center" style={{ justifyContent: "center", width: "calc(100% / 3)", padding: 0, margin: 0, display: "flex", flexDirection: "row", paddingTop: "10px", fontSize: "20px", color: "white", textDecoration: "none", listStyleType: "none", letterSpacing: "2px" }}>
+                    <ul className="navbar_list center" style={{ justifyContent: "flex-start", width: "calc(100% / 3)", padding: 0, margin: 0, display: "flex", flexDirection: "row", paddingTop: "0px", fontSize: "20px", color: "white", textDecoration: "none", listStyleType: "none", letterSpacing: "2px" }}>
+                        <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "black"}}><span>ArtMasters</span>Academy</a></li>     
+                    </ul>
+                    <ul className="navbar_list center" style={{ justifyContent: "center", width: "calc(100% / 3)", padding: 0, margin: 0, display: "flex", flexDirection: "row", paddingTop: "0px", fontSize: "20px", color: "white", textDecoration: "none", listStyleType: "none", letterSpacing: "2px" }}>
                         <li class="navbar__list-item"><a href="/courses" class="hover-target" style={{ padding: "15px", color: "black"}}>Online Courses</a></li>
                         <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "black"}}>Offline Courses</a></li>
                         <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "black"}}>Live Sessions</a></li>
-                        <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "black"}}>About</a></li>
+                        {/* <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "black"}}>About</a></li> */}
                     </ul>
-                    <ul className="navbar_list right" style={{ justifyContent: "flex-end", width: "calc(100% / 3)", display: "flex", flexDirection: "row", margin: 0, padding: 0, listStyleType: "none", paddingTop: "40px", fontSize: "20px"}}>
+                    <ul className="navbar_list right" style={{ justifyContent: "flex-end", width: "calc(100% / 3)", display: "flex", flexDirection: "row", margin: 0, padding: 0, listStyleType: "none", paddingTop: "0px", fontSize: "20px"}}>
                         {user == null && (
                             <>
-                                <li class="navbar__list-item"><a style={{ padding: "15px", color: "black"}} href="/login" class="hover-target">Login</a></li>
-                                <li class="navbar__list-item"><a style={{ padding: "15px", color: "blac", marginRight: "40px" }} href="/register" class="hover-target">Register</a></li>
+                                <li class="navbar__list-item"><a style={{ padding: "0px", color: "black"}} href="/login" class="hover-target">Login</a></li>
+                                <li class="navbar__list-item"><a style={{ padding: "0px", color: "blac", marginRight: "40px" }} href="/register" class="hover-target">Register</a></li>
                             </>
                         )}
                         {user !== null && (
                             <>
                                 <div class="dropdown">
-                                    <span style={{ color: "white" }}><UserOutlined style={{ marginRight: "10px", marginBottom: "10px" }}/> {user && user.name}</span>
+                                    <span style={{ color: "white", display: "flex", flexDirection: "row" }}><p style={{ color: "black", marginBottom: 0 }}>{user && user.name}</p></span>
                                     <div class="dropdown-content">
                                         <Link  href="/user">
                                                 <a>Dashboard</a>

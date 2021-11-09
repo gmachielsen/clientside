@@ -33,7 +33,6 @@ function MyApp({ Component, pageProps }) {
    asPath === "/admin/users" || 
    asPath === "/admin/applicants" || 
    asPath === "/admin/cover" || 
-   asPath === "/courses" || 
    asPath === "/about" || 
    asPath === "/admin/category" || 
    asPath === "/admin/category/create" ||
@@ -57,6 +56,24 @@ function MyApp({ Component, pageProps }) {
       {/* <Footer /> */}
      </Provider>
     )
+ } else if (
+  asPath === "/courses" 
+ ) { return (
+  <Provider>
+  <ToastContainer position="top-center" />
+  <MediaQuery minWidth={0} maxWidth={1223}>
+  <TopNavIndex />
+
+  </MediaQuery>
+  <MediaQuery minWidth={1224}>
+    <NavDesktop />
+  </MediaQuery>
+
+    <Component {...pageProps} />
+  {/* <Footer /> */}
+ </Provider>
+ )
+
  } else {
    return (
     <Provider>
