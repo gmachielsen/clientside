@@ -48,16 +48,16 @@ const NavDesktop = () => {
     
                 </div>
             </header>
-            <div className="navbar" style={{ padding: 12 }}>
+            <div className="navbar" style={{ padding: 12, backgroundColor: "black"  }}>
         
                 <div className="navbar_content" style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-end", width: "100%" }}>
                     <ul className="navbar_list center" style={{ justifyContent: "flex-start", width: "calc(100% / 3)", padding: 0, margin: 0, display: "flex", flexDirection: "row", paddingTop: "0px", fontSize: "20px", color: "white", textDecoration: "none", listStyleType: "none", letterSpacing: "2px" }}>
-                        <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "black"}}><span>ArtMasters</span>Academy</a></li>     
+                        <li class="navbar__list-item"><a href="/" class="hover-target" style={{ padding: "15px", color: "white"}}><span>ArtMasters</span>Academy</a></li>     
                     </ul>
                     <ul className="navbar_list center" style={{ justifyContent: "center", width: "calc(100% / 3)", padding: 0, margin: 0, display: "flex", flexDirection: "row", paddingTop: "0px", fontSize: "20px", color: "white", textDecoration: "none", listStyleType: "none", letterSpacing: "2px" }}>
-                        <li class="navbar__list-item"><a href="/courses" class="hover-target" style={{ padding: "15px", color: "black"}}>Online Courses</a></li>
-                        <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "black"}}>Offline Courses</a></li>
-                        <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "black"}}>Live Sessions</a></li>
+                        <li class="navbar__list-item"><a href="/courses" class="hover-target" style={{ padding: "15px", color: "white"}}>Online Courses</a></li>
+                        <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "white"}}>Offline Courses</a></li>
+                        <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "white"}}>Live Sessions</a></li>
                         {/* <li class="navbar__list-item"><a href="" class="hover-target" style={{ padding: "15px", color: "black"}}>About</a></li> */}
                     </ul>
                     <ul className="navbar_list right" style={{ justifyContent: "flex-end", width: "calc(100% / 3)", display: "flex", flexDirection: "row", margin: 0, padding: 0, listStyleType: "none", paddingTop: "0px", fontSize: "20px"}}>
@@ -70,7 +70,7 @@ const NavDesktop = () => {
                         {user !== null && (
                             <>
                                 <div class="dropdown">
-                                    <span style={{ color: "white", display: "flex", flexDirection: "row" }}><p style={{ color: "black", marginBottom: 0 }}>{user && user.name}</p></span>
+                                    <span style={{ color: "white", display: "flex", flexDirection: "row" }}><p style={{ color: "white", marginBottom: 0 }}>{user && user.name}</p></span>
                                     <div class="dropdown-content">
                                         <Link  href="/user">
                                                 <a>Dashboard</a>
@@ -92,7 +92,7 @@ const NavDesktop = () => {
                                                             
                                     </div>
                                 </div>
-                                <li class="navbar__list-item"><a href="" style={{ padding: "75px", color: "black"}} class="hover-target" onClick={logout}>Logout</a></li>
+                                <li class="navbar__list-item"><a href="" style={{ padding: "75px", color: "white"}} class="hover-target" onClick={logout}>Logout</a></li>
                             </>
                         )}
                     </ul>
