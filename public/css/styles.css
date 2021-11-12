@@ -134,6 +134,20 @@ z-index: 2;
 cursor: pointer;
 display: block;
 }
+
+/* .menu-icon__line.restofwebsite {
+        height: 2px;
+        width: 30px;
+        display: block;
+        background-color: #000;
+        margin-bottom: 7px;
+        cursor: pointer;
+} */
+
+.mobilenav {
+        background-color: black!important;
+}
+
 .menu-icon__line {
 height: 2px;
 width: 30px;

@@ -63,8 +63,9 @@ const NavDesktop = () => {
                     <ul className="navbar_list right" style={{ justifyContent: "flex-end", width: "calc(100% / 3)", display: "flex", flexDirection: "row", margin: 0, padding: 0, listStyleType: "none", paddingTop: "0px", fontSize: "20px"}}>
                         {user == null && (
                             <>
-                                <li class="navbar__list-item"><a style={{ padding: "0px", color: "black"}} href="/login" class="hover-target">Login</a></li>
-                                <li class="navbar__list-item"><a style={{ padding: "0px", color: "blac", marginRight: "40px" }} href="/register" class="hover-target">Register</a></li>
+                                <li class="navbar__list-item"><a style={{ padding: "0px", color: "white"}} href="/login" class="hover-target">Login</a></li>
+        
+                                <li class="navbar__list-item"><a style={{ padding: "0px", paddingLeft: "30px",color: "white", marginRight: "40px" }} href="/register" class="hover-target">Register</a></li>
                             </>
                         )}
                         {user !== null && (

@@ -1,5 +1,6 @@
 import TopNav from "../components/TopNav";
 import NavDesktop from "../components/nav/NavDesktop";
+import NavMobile from "../components/nav/NavMobile";
 import TopNavIndex from "../components/TopNavIndex";
 import Footer from "../components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -62,7 +63,7 @@ function MyApp({ Component, pageProps }) {
   <Provider>
   <ToastContainer position="top-center" />
   <MediaQuery minWidth={0} maxWidth={1223}>
-  <TopNavIndex />
+  <NavMobile />
 
   </MediaQuery>
   <MediaQuery minWidth={1224}>
