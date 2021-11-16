@@ -16,9 +16,7 @@ const Footer = () => {
                                     <br/>
                                     <h2 style={{ color: 'white' }}>Keep in touch</h2>
                                     <p>Subscribe for our newsletter and keep in touch on social media</p>
-                                    {/* <fab icon={['fab', 'google']} /> */}
                                     <div className="subscribe input-group mb-3" style={{ justifyContent: 'center'}}>
-                                        {/* style={{ justify-content: 'center' }} */}
                                             <div>
                                                 <Button href="/user/newsletter">Subscribe</Button>
                                             </div>        
@@ -48,22 +46,30 @@ const Footer = () => {
                                 <Link href="/"><p style={{ color: "white" }}>Instructors</p></Link>
                                 </h6>
                             </div>
-{/* 
-                            <div className="col-lg-2 col-xl-1 mb-3">
-                                <h6 className="text-uppercase font-weight">
-                                <Link href="/"><p style={{ color: "white" }}>Contact</p></Link>
-                                </h6>
-                            </div>  */}
-                    
-             
- 
                     </div>
+                    <hr style={{ height: "1px", color: "white", width: "50%", margin: "auto" }} />
 
-                        <hr className="rgba-white-light" style={{ margin: '0 15%'}}></hr>
-                        <hr className="clearfix d-md-none rgba-white-light" style={{ margin: '10% 15% 5%'}}></hr>
+                        {/* <hr className="rgba-white-light" style={{ margin: '0 15%'}}></hr>
+                        <hr className="clearfix d-md-none rgba-white-light" style={{ margin: '10% 15% 5%'}}></hr> */}
+                        <br/>
+                        <br/>
 
+                        <p class="text-center text-muted">&copy; 2021 Artmastersacademy</p>
+                        <br/>
                     
                 </div>
+                {/* <div class="container">
+                    <footer class="py-3 my-4">
+                        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+                        </ul>
+                        <p class="text-center text-muted">&copy; 2021 Company, Inc</p>
+                    </footer>
+                </div> */}
         </footer>
     )
 }

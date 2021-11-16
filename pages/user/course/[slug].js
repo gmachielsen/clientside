@@ -6,6 +6,7 @@ import { Button, Menu, Avatar } from "antd";
 import ReactPlayer from "react-player";
 import ReactMarkdown from "react-markdown";
 import {PlayCircleOutlined, MenuFoldOutlined, MenuUnfoldOutlined, CheckCircleFilled, MinusCircleFilled } from '@ant-design/icons';
+import MediaQuery from 'react-responsive';
 
 const {Item} = Menu;
 
@@ -74,16 +75,82 @@ const SingleCourse = () => {
     return (
         <StudentRoute>
             <div className="row">
+                <MediaQuery minWidth={360} maxWidth={1224}>
+
+                <div class="col-12" style={{ marginTop: "100px" }}>
+                    
+                    <h3 style={{ textAlign: "center", backgroundColor: "lightgray", padding: "10px" }}>Lessons</h3>
+      
+                    <Menu 
+                        defaultSelectedKeys={[clicked]} 
+                        inlineCollapsed={collapsed} 
+                        style={{ }}>
+                        {course.lessons.map((lesson, index) => (
+                            <Item onClick={() => setClicked(index)} key={index} icon={<Avatar>{index + 1}</Avatar>}>
+                                {lesson.title.substring(0, 30)}
+                                {completedLessons.includes(lesson._id) ? (
+                                    <CheckCircleFilled className="float-right text-primary ml-2" style={{ marginTop: "13px" }}/>
+                                ) : (
+                                    <div></div>// <MinusCircleFilled className="float-right text-danger ml-2" style={{ marginTop: "13px" }}/>
+                                )}
+                            </Item>
+                        ))}
+                    </Menu>
+                    <hr/>
+                </div>
+                <div className="col">
+                    {clicked !== -1 ? (
+                    <>
+                        <div className="col alert alert-primary square">
+                            <b>{course.lessons[clicked].title.substring(0, 30)}</b>
+                            {completedLessons.includes(course.lessons[clicked]._id) ? (
+                                <span className="float-right pointer" onClick={markIncompleted}>
+                                    Mark as incompleted
+                                </span>
+                            ) : (
+                                <span className="float-right pointer" onClick={markCompleted}>
+                                    Mark as completed
+                                </span>
+                            )}
+
+                        </div>
+                    {course.lessons[clicked].video && course.lessons[clicked].video.Location && (
+                        <>
+                            <div className="wrapper">
+                                <ReactPlayer 
+                                    className="player" 
+                                    url={course.lessons[clicked].video.Location}
+                                    width="100%"
+                                    height="100%"
+                                    controls
+                                    onEnded={() => markCompleted()}
+                                />
+                            </div>
+                        </>
+                    )}
+                    
+                        <ReactMarkdown
+                            source={course.lessons[clicked].content}
+                            className="single-post"
+                        />
+                    </> 
+                    ) : (
+                        <div className="d-flex justify-content-center p-5">
+                            <div className="text-center p-5">
+                                <PlayCircleOutlined className="text-primary display-1 p-5" />
+                                <p className="lead">Click on the lessons to start learning</p>
+                            </div>
+                        </div>
+                    )}
+                </div>
+                </MediaQuery>
+                <MediaQuery minWidth={1225}>
+                                
                 <div style={{ maxWidth: 320 }}>
+                    <br />
+
                     <h3 style={{ textAlign: "center"}}>Lessons</h3>
-                    {/* <hr/> */}
-                    {/* <Button 
-                        onClick={() => setCollapsed(!collapsed)} 
-                        className="text-primary mt-1 btn-block mb-2"
-                    >
-                        {createElement( collapsed ? MenuUnfoldOutlined : MenuFoldOutlined )}{" "}
-                        {!collapsed && "Lessons"}
-                    </Button> */}
+      
                     <Menu 
                         defaultSelectedKeys={[clicked]} 
                         inlineCollapsed={collapsed} 
@@ -145,6 +212,7 @@ const SingleCourse = () => {
                         </div>
                     )}
                 </div>
+                </MediaQuery>
             </div>
         </StudentRoute>
     );

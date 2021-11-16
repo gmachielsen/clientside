@@ -51,7 +51,7 @@ const Index = ({ courses }) => {
       {/* <div style={{ width: '100%' }}> */}
         <div className="cover" style={{ padding: 0, position: 'relative', textAlign: 'center' }}>
         <MediaQuery minWidth={360} maxWidth={1224}>
-        <>
+                <>
                     <div style={{ position: 'absolute', zIndex: 2, width: "100%"}}>
                       <TopNavIndex />     
                     </div>
@@ -60,7 +60,8 @@ const Index = ({ courses }) => {
                       Art Masters Academy
                       {/* <img src={require('../../public/coverphoto.jpg')} /> */}
                     </h1>
-                </>        </MediaQuery>
+                </>        
+        </MediaQuery>
         <MediaQuery minWidth={1224} maxWidth={1824}>
         <>
                   <div style={{ position: 'absolute', zIndex: 2, width: "100%"}}> 

@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps }) {
    asPath === "/admin/category/create" ||
    asPath === `/admin/category/edit/${slug}` ||
    asPath === "/admin/subcategory/create" ||
-   asPath === `admin/subcategory/edit/${slug}` ||
+   asPath === `/admin/subcategory/edit/${slug}` ||
    asPath === "/user" 
   ) {
     return(
@@ -58,7 +58,9 @@ function MyApp({ Component, pageProps }) {
      </Provider>
     )
  } else if (
-  asPath === "/courses" 
+  asPath === "/courses" ||
+  asPath === `/course/${slug}` ||
+  asPath === `/user/course/${slug}` 
  ) { return (
   <Provider>
   <ToastContainer position="top-center" />
