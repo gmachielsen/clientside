@@ -42,7 +42,7 @@ const SingleCourseJumbotron = ({
           </p>
           {/* category */}
           <Badge
-            count={category}
+            count={category.name}
             style={{ backgroundColor: "#03a9f4" }}
             className="pb-4 mr-2"
           />
