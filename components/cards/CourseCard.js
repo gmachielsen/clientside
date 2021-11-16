@@ -28,9 +28,9 @@ const CourseCard = ({ course }) => {
                     }
                 >                    
                     <h2 style={{ fontWeight: 'normal', textAlign: "center" }}>{name}</h2>
-                    {/* <p>by {instructor.name}</p> */}
+                    <p>by {instructor.name}</p>
                     <Badge 
-                        count={category}
+                        count={category.name}
                         style={{ backgroundColor: "#03a9f4"}}
                         className="pb-2 mr-2"
                     />
@@ -61,9 +61,9 @@ const CourseCard = ({ course }) => {
                 }
             >                    
                 <h2 style={{ fontWeight: 'normal', textAlign: "center" }}>{name}</h2>
-                {/* <p>by {instructor.name}</p> */}
+                <p>by {instructor.name}</p>
                 <Badge 
-                    count={category}
+                    count={category.name}
                     style={{ backgroundColor: "#03a9f4"}}
                     className="pb-2 mr-2"
                 />
