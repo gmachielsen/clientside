@@ -22,7 +22,7 @@ const CourseCard = ({ course }) => {
                         <img
                         src={image ? image.Location: image}
                         alt={name}
-                        style={{ height: "256px", objectFit: "cover", filter: "brightness(0.9)" }}
+                        style={{ height: "256px", objectFit: "cover", filter: "brightness(0.5)" }}
                         className="p-1"
                         />
                     }
@@ -55,7 +55,7 @@ const CourseCard = ({ course }) => {
                     <img
                     src={image ? image.Location: image}
                     alt={name}
-                    style={{ height: "500px", objectFit: "cover", filter: "brightness(0.9)" }}
+                    style={{ height: "500px", objectFit: "cover", filter: "brightness(0.5)" }}
                     className="p-1"
                     />
                 }
