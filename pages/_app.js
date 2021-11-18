@@ -73,7 +73,7 @@ function MyApp({ Component, pageProps }) {
   </MediaQuery>
 
     <Component {...pageProps} />
-  {/* <Footer /> */}
+  <Footer />
  </Provider>
  )
 

@@ -9,6 +9,10 @@ import { toast } from "react-toastify";
 import { loadStripe } from "@stripe/stripe-js";
 import LessonCard from "../../components/cards/LessonCard";
 
+import { Collapse } from 'antd';
+
+const { Panel } = Collapse;
+
 const SingleCourse = ({ course }) => {
   // state
   const [showModal, setShowModal] = useState(false);
@@ -24,6 +28,28 @@ const SingleCourse = ({ course }) => {
     if (user && course) checkEnrollment();
     console.log(course.lessons, "course lesson");
   }, [user, course]);
+
+  useEffect(() => {
+    let accordions = document.querySelectorAll(".accordion");
+    console.log(accordions, "accordions");
+
+    for (var i = 0; i < accordions.length; i++) {
+        accordions[i].addEventListener("click", function() {
+            var cla = this.classList;
+            console.log(cla, "cla");
+
+
+            /* Toggle between hiding and showing the active panel */
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+              panel.style.maxHeight = null;
+            } else {
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            }    
+        });
+    }
+  })
 
   const checkEnrollment = async () => {
     const { data } = await axios.get(`/api/check-enrollment/${course._id}`);
@@ -117,7 +143,16 @@ const SingleCourse = ({ course }) => {
               <div className="row" style={{ justifyContent: 'center', textAlign: 'center'}}>
                   <h1 style={{ marginTop: '100px', marginBottom: '100px'}}>Course overview</h1>
 
-
+                  <div className="col-8">
+                    <Collapse bordered={false}>
+                      {course.lessons.map((lesson) => (
+                        <Panel header={lesson.title} >
+                        
+                        </Panel>
+                      ))}
+                    </Collapse>
+                   
+                  </div>
                   {/* <div class="accordion accordion-flush" id="accordionFlushExample">
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="flush-headingOne">
@@ -155,7 +190,7 @@ const SingleCourse = ({ course }) => {
 
               
 
-                {course.lessons.map((lesson) => (
+                {/* {course.lessons.map((lesson) => (
                   <div key={lesson._id} className="col-sm-12 col-md-12 col-lg-6" style={{ textAlign: 'center ', float: 'none', margin: 'auto', display: 'contents'}}>
                     <LessonCard 
                      lesson={lesson} 
@@ -165,8 +200,15 @@ const SingleCourse = ({ course }) => {
                     />
                   </div>
                   )
-                )}
+                )} */}
+              
               </div>
+              <br/>
+              <br/>  
+              <br/>
+              <br/>  
+              <br/>
+              <br/>
             </div>
     </>
   );
