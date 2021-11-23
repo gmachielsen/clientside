@@ -167,16 +167,22 @@ const Login = () => {
                 onSuccess={googleLogin}
                 onFailure={googleLogin}
                 render={renderProps => (
-                  <button
+                  <Button
                     onClick={renderProps.onClick}
                     disabled={renderProps.disabled}
                     className="btn btn-danger btn-lg btn-block"
+                    icon={<GoogleOutlined />}
+                    type="danger"
+                    className="mb-3"
+                    block
+                    shape="round"
+                    size="large"
+                    style={{ width: "67%", display: "block", margin: "auto" }}
                   >
-                    <GoogleOutlined /> Login with Google
-                  </button>
+                     Login with Google
+                  </Button>
                 )}
                 // cookiePolicy={'single_host_origin'}
-                style={{ width: "67%", display: "block", margin: "auto" }}
             />
             <div>{process.env.REACT_APP_GOOGLE_CLIENT_ID}</div>
         <p className="text-center pt-3">
