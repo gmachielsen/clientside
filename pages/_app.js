@@ -60,7 +60,10 @@ function MyApp({ Component, pageProps }) {
  } else if (
   asPath === "/courses" ||
   asPath === `/course/${slug}` ||
-  asPath === `/user/course/${slug}` 
+  asPath === `/user/course/${slug}` ||
+  asPath === "/login" ||
+  asPath === "/register" 
+  
  ) { return (
   <Provider>
   <ToastContainer position="top-center" />
