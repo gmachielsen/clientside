@@ -8,6 +8,7 @@ import {useRouter} from 'next/router';
 import { Button } from "antd";
 import { GoogleOutlined, FacebookOutlined } from "@ant-design/icons";
 import GoogleLogin from 'react-google-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 
 
@@ -72,6 +73,10 @@ const Login = () => {
     } catch (err) {
       console.log(err); 
     }
+  }
+
+  const responseFacebook = (response) => {
+    console.log(response)
   }
 
   // const googleLogin = async () => {
@@ -186,6 +191,26 @@ const Login = () => {
                 // cookiePolicy={'single_host_origin'}
             />
             <div>{process.env.REACT_APP_GOOGLE_CLIENT_ID}</div>
+            {/* <FacebookLogin
+                appId={`${process.env.REACT_APP_FACEBOOK_APP_ID}`}
+                autoLoad={false}
+                callback={responseFacebook}
+                render={renderProps => (
+                  <Button 
+                    onClick={renderProps.onClick}
+                    className="btn btn-danger btn-lg btn-block"
+                    icon={<FacebookOutlined />}
+                    className="mb-3"
+                    block
+                    shape="round"
+                    size="large"
+                    style={{ width: "67%", display: "block", margin: "auto", backgroundColor: "#2962ff", color: "white" }}
+                  >
+                    Login with Facebook
+                  </Button>
+                )}
+                // cookiePolicy={'single_host_origin'}
+            /> */}
         <p className="text-center pt-3">
           Not yet registered?{" "}
           <Link href="/register">
